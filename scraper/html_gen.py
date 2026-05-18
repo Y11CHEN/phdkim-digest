@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 from pathlib import Path
+import html as _html
 
 _DEFAULT_HTML_PATH = Path(__file__).parent.parent / "docs" / "index.html"
 _BODY_COLLAPSE_THRESHOLD = 500
@@ -12,21 +13,27 @@ def generate_html(posts: list) -> str:
 
     cards = []
     for p in posts_sorted:
-        body = p.get("body_zh", "")
+        title = _html.escape(p["title_zh"])
+        url = p["url"]  # URL: keep as-is (it's from our own scraper)
+        likes = p["likes"]  # integer: safe
+        date = _html.escape(p["date"])
+        body = _html.escape(p.get("body_zh", ""))
+
         if len(body) > _BODY_COLLAPSE_THRESHOLD:
-            preview = body[:_BODY_COLLAPSE_THRESHOLD] + "..."
+            preview = body[:_BODY_COLLAPSE_THRESHOLD]
+            rest = body[_BODY_COLLAPSE_THRESHOLD:]
             body_html = (
-                f'<p class="preview">{preview}</p>'
-                f'<details><summary>展开全文</summary>'
-                f'<p class="full">{body}</p></details>'
+                f'<p>{preview}</p>'
+                f'<details><summary>继续阅读...</summary>'
+                f'<p>{rest}</p></details>'
             )
         else:
             body_html = f'<p>{body}</p>'
 
         cards.append(
             f'<div class="post">'
-            f'<div class="post-title"><a href="{p["url"]}" target="_blank">{p["title_zh"]}</a></div>'
-            f'<div class="post-meta">👍 {p["likes"]} &nbsp;|&nbsp; {p["date"]}</div>'
+            f'<div class="post-title"><a href="{url}" target="_blank">{title}</a></div>'
+            f'<div class="post-meta">👍 {likes} &nbsp;|&nbsp; {date}</div>'
             f'<div class="post-body">{body_html}</div>'
             f'</div>'
         )

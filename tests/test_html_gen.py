@@ -43,7 +43,7 @@ def test_generate_html_collapses_long_body():
     }]
     html = generate_html(long_post)
     assert "<details>" in html
-    assert "展开全文" in html
+    assert "继续阅读..." in html
 
 
 def test_generate_html_no_details_for_short_body():
