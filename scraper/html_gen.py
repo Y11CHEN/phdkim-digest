@@ -59,6 +59,12 @@ def _render_card(p: dict) -> str:
         f'<span class="post-meta">👍 {likes} &nbsp;|&nbsp; {date}</span>'
         f'<button class="fav-btn" data-id="{post_id}" '
         f'onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button>'
+        f'<button class="del-btn" data-id="{post_id}" '
+        f'onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button>'
+        f'<span class="del-confirm" data-id="{post_id}" style="display:none">'
+        f'隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button>'
+        f'<button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button>'
+        f'</span>'
         f'</div>'
         f'</div>'
         f'<div class="post-body">{body_html}</div>'
@@ -112,6 +118,11 @@ details summary{{cursor:pointer;color:#888;font-size:13px;user-select:none}}
 body[data-view="toc"] .post-header{{cursor:pointer}}
 body[data-view="toc"] .post.expanded{{box-shadow:0 2px 8px rgba(0,0,0,.12)}}
 .fav-empty{{text-align:center;padding:60px 20px;color:#aaa;background:#fff;border-radius:10px;display:none}}
+.del-btn{{background:none;border:none;font-size:14px;cursor:pointer;padding:0 2px;line-height:1;color:#ccc;transition:color .1s}}
+.del-btn:hover{{color:#e74c3c}}
+.del-confirm{{font-size:12px;color:#888;white-space:nowrap}}
+.del-confirm button{{background:none;border:1px solid #ddd;border-radius:4px;padding:1px 6px;cursor:pointer;font-size:12px;margin-left:4px}}
+.del-confirm button:hover{{background:#f0f0f0}}
 </style>
 </head>
 <body data-view="toc">

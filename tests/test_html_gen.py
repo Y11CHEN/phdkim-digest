@@ -152,3 +152,31 @@ def test_group_posts_structure():
 
     # Historical group contains the no-scraped_at post
     assert hist_posts[0]["id"] == "3"
+
+
+# ── Hide-post: HTML + CSS ──────────────────────────────────────────────────
+
+_HIDE_POST = {
+    "id": "99", "title_zh": "隐藏测试", "likes": 50,
+    "date": "2026-01-01", "url": "https://phdkim.net/99", "body_zh": "内容",
+}
+
+
+def test_render_card_has_del_btn():
+    from scraper.html_gen import _render_card
+    out = _render_card(_HIDE_POST)
+    assert 'class="del-btn" data-id="99"' in out
+
+
+def test_render_card_has_del_confirm_hidden():
+    from scraper.html_gen import _render_card
+    out = _render_card(_HIDE_POST)
+    assert 'class="del-confirm" data-id="99"' in out
+    assert 'style="display:none"' in out
+
+
+def test_generated_html_has_del_css():
+    from scraper.html_gen import generate_html
+    out = generate_html([])
+    assert '.del-btn' in out
+    assert '.del-confirm' in out
