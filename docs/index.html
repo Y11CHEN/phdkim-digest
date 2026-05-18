@@ -32,12 +32,17 @@ details summary{cursor:pointer;color:#888;font-size:13px;user-select:none}
 body[data-view="toc"] .post-header{cursor:pointer}
 body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 .fav-empty{text-align:center;padding:60px 20px;color:#aaa;background:#fff;border-radius:10px;display:none}
+.del-btn{background:none;border:none;font-size:14px;cursor:pointer;padding:0 2px;line-height:1;color:#ccc;transition:color .1s}
+.del-btn:hover{color:#e74c3c}
+.del-confirm{font-size:12px;color:#888;white-space:nowrap}
+.del-confirm button{background:none;border:1px solid #ddd;border-radius:4px;padding:1px 6px;cursor:pointer;font-size:12px;margin-left:4px}
+.del-confirm button:hover{background:#f0f0f0}
 </style>
 </head>
 <body data-view="toc">
 <header>
   <h1>phdkim.net 中文精选</h1>
-  <p class="subtitle">最后更新：2026-05-18 21:45 UTC &nbsp;|&nbsp; 共 33 篇</p>
+  <p class="subtitle">最后更新：2026-05-18 22:12 UTC &nbsp;|&nbsp; 共 33 篇</p>
   <div class="tabs">
     <button class="tab active" id="tab-toc" onclick="switchView('toc')">目录</button>
     <button class="tab" id="tab-full" onclick="switchView('full')">全文</button>
@@ -45,7 +50,7 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
   </div>
 </header>
 <div class="group-header">历史精选（初始导入）· 33 篇</div>
-<div class="post" data-id="28190"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/28190?from=home_hot_all" target="_blank" onclick="event.stopPropagation()">&lt;如何进入研究生院</a></div><div class="post-right"><span class="post-meta">👍 1303 &nbsp;|&nbsp; 2022.03.08</span><button class="fav-btn" data-id="28190" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>&quot;研究生院不是人们生活的地方&quot;
+<div class="post" data-id="28190"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/28190?from=home_hot_all" target="_blank" onclick="event.stopPropagation()">&lt;如何进入研究生院</a></div><div class="post-right"><span class="post-meta">👍 1303 &nbsp;|&nbsp; 2022.03.08</span><button class="fav-btn" data-id="28190" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="28190" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="28190" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>&quot;研究生院不是人们生活的地方&quot;
 &quot;那不是奴役吗？&quot;
 &quot;学校的夜间灯塔永不熄灭&quot;
 
@@ -393,7 +398,7 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 我为我过去写的东西感到羞愧，我觉得我自命不凡，所以我要在这里加一个短逗号。
 就像研究生院对我做的那样、
 我希望这对你来说是一段美好的回忆和经历，就像研究生院对我一样。</p></details></div></div>
-<div class="post" data-id="27703"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/27703?from=home_hot_all" target="_blank" onclick="event.stopPropagation()">[研究与论文比较（供有抱负的科学家参考）</a></div><div class="post-right"><span class="post-meta">👍 383 &nbsp;|&nbsp; 2022.02.21</span><button class="fav-btn" data-id="27703" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>我毕业于其中一所大学的学士/硕士学位课程，并获得了博士学位。
+<div class="post" data-id="27703"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/27703?from=home_hot_all" target="_blank" onclick="event.stopPropagation()">[研究与论文比较（供有抱负的科学家参考）</a></div><div class="post-right"><span class="post-meta">👍 383 &nbsp;|&nbsp; 2022.02.21</span><button class="fav-btn" data-id="27703" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="27703" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="27703" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>我毕业于其中一所大学的学士/硕士学位课程，并获得了博士学位。
 我目前是我所在大学的一名 podac 研究员，这所大学是世界排名前 20 位的大学。
 我现在工作的实验室是那种每年都有一个 CNS 出来的实验室。
 我有一些在 20-30 多种 IF 期刊上投稿、审稿和发表论文的经验、
@@ -430,7 +435,7 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 如果很不幸，教授不是这样的人，那么研究人员自己就应该专注研究，拥有这样的视野和洞察力、
 我想，当你完成博士课程时，你一定会发现自己是一名科学家，而不是一名科学技术人员。
 祝您一切顺利~~~!!!!</p></details></div></div>
-<div class="post" data-id="32566"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/32566?from=home_weekly" target="_blank" onclick="event.stopPropagation()">我在实验室里很开心...</a></div><div class="post-right"><span class="post-meta">👍 294 &nbsp;|&nbsp; 2022.07.25</span><button class="fav-btn" data-id="32566" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>我现在是一年级博士生，在实验室里我很开心。
+<div class="post" data-id="32566"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/32566?from=home_weekly" target="_blank" onclick="event.stopPropagation()">我在实验室里很开心...</a></div><div class="post-right"><span class="post-meta">👍 294 &nbsp;|&nbsp; 2022.07.25</span><button class="fav-btn" data-id="32566" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="32566" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="32566" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>我现在是一年级博士生，在实验室里我很开心。
 我本科毕业后就一直在这里，所以我在这个实验室已经四年了，一直都是这样。
 首先，钱很好赚。
 我有很多劳务费，学费由学校奖学金支付。
@@ -461,7 +466,7 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 再次完成工作的感觉很好，所以我在睡觉前写了一点东西
 我真的很高兴，也很庆幸自己很好地选择了实验室和研究生院。
 我希望能继续这样下去</p></details></div></div>
-<div class="post" data-id="44519"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/44519?from=home_weekly" target="_blank" onclick="event.stopPropagation()">我们的引用次数终于超过了 1000...</a></div><div class="post-right"><span class="post-meta">👍 254 &nbsp;|&nbsp; 2023.07.02</span><button class="fav-btn" data-id="44519" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>我读硕士 2 年，读博士 4 年。
+<div class="post" data-id="44519"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/44519?from=home_weekly" target="_blank" onclick="event.stopPropagation()">我们的引用次数终于超过了 1000...</a></div><div class="post-right"><span class="post-meta">👍 254 &nbsp;|&nbsp; 2023.07.02</span><button class="fav-btn" data-id="44519" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="44519" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="44519" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>我读硕士 2 年，读博士 4 年。
 我在利用匿名的力量吹牛。我终于获得了超过 1000 次的引用!!!! 呜呼！！我的研究领域是人工智能/ML。
 当然，有很多人比我更优秀，我也知道引用次数并不能代表我的能力，但对我来说，这就像是对我一直以来坚持不懈的奖励。
 在过去的五年里，我一直在不停地工作。现在我知道自己的优势在哪里了：我并不比别人聪明，但我绝对比别人勤奋和坚持。正如我最喜欢的一位本科教授所说：&quot;如果你很笨，至少你有长时间学习的耐力&quot;。
@@ -469,7 +474,7 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 干杯
 + 我以为你们都会说我吹牛，但还是非常感谢你们的支持 :)我会更加努力的。
 + 我毕业了！我在美国一家大型科技公司担任研究科学家。</p></div></div>
-<div class="post" data-id="27949"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/27949?from=home_weekly" target="_blank" onclick="event.stopPropagation()">博士生和刚毕业博士的研究计划书写作技巧</a></div><div class="post-right"><span class="post-meta">👍 248 &nbsp;|&nbsp; 2022.03.01</span><button class="fav-btn" data-id="27949" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>过去，资助金主要颁发给首席研究员、
+<div class="post" data-id="27949"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/27949?from=home_weekly" target="_blank" onclick="event.stopPropagation()">博士生和刚毕业博士的研究计划书写作技巧</a></div><div class="post-right"><span class="post-meta">👍 248 &nbsp;|&nbsp; 2022.03.01</span><button class="fav-btn" data-id="27949" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="27949" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="27949" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>过去，资助金主要颁发给首席研究员、
 近年来，许多补助金也颁发给了博士生和刚毕业的博士（以研究基金补助金为基础）。
 例如，即将设立的博士生研究补助金和创新挑战研究、
 以及上周公布的世宗科学奖学金和博士后培训。
@@ -603,7 +608,7 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 希望这篇文章对您有所帮助
 也希望你们能在良好的环境中开展研究。
 谢谢</p></details></div></div>
-<div class="post" data-id="41505"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/41505?from=home_weekly" target="_blank" onclick="event.stopPropagation()">对于希望撰写第一作者论文的低年级本科生来说</a></div><div class="post-right"><span class="post-meta">👍 236 &nbsp;|&nbsp; 2023.04.19</span><button class="fav-btn" data-id="41505" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>我是SKYPK的一名本科生，我的共同第一作者论文今天被录用了!!!!，这是我在实验室3年没做过的课题，从方法到分析到数据到稿件再到修改，我已经做了2年！期刊IF不高，但它是在该领域有传统的期刊上。
+<div class="post" data-id="41505"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/41505?from=home_weekly" target="_blank" onclick="event.stopPropagation()">对于希望撰写第一作者论文的低年级本科生来说</a></div><div class="post-right"><span class="post-meta">👍 236 &nbsp;|&nbsp; 2023.04.19</span><button class="fav-btn" data-id="41505" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="41505" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="41505" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>我是SKYPK的一名本科生，我的共同第一作者论文今天被录用了!!!!，这是我在实验室3年没做过的课题，从方法到分析到数据到稿件再到修改，我已经做了2年！期刊IF不高，但它是在该领域有传统的期刊上。
 不管出于什么原因，我都要写几句话，送给那些想尝试发表第一作者论文的本科生。
 1.大量的时间可以解决大量的问题
 根据我周围的所见所闻，一般人都是在大三暑假进入实验室的。如果你要作为第一作者写论文，就不应该这样做。你的老师现在对科研一无所知。如果你在大三暑假进入实验室，那么当你经历了一个暑假加两个学期的摸爬滚打后，你已经进入大四了，那时你已经在考虑下一步的职业发展，研究自然就退居其次了。
@@ -616,7 +621,7 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 积极与教授们会面是理所当然的：把他们想象成带领士兵打仗的将军，而你则是为他们提供补给和军队的皇帝。你有责任向他们介绍你已经征服的地方，以及你计划如何征服下一个高地，并将你的研究带向胜利，并获得他们的反馈。这是因为你所获得的所有资源都由你的教授决定。
 4.研究是一场持久战。
 拓展人类知识视野的研究需要大量的心血和努力，而属于罪犯的大脑需要很长一段时间才能到达知识视野的尽头，拓展知识视野。 所以你需要先进入实验室，迅速开始研究。我们的社会很容易说 &quot;谁站在终点谁就赢了&quot;，但要站在终点却很难，因为担心自己付出的大量努力可能会白费。 这就是为什么研究如此难得和宝贵。</p></details></div></div>
-<div class="post" data-id="61211"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/61211?from=home_weekly" target="_blank" onclick="event.stopPropagation()">关于（抑郁）失败</a></div><div class="post-right"><span class="post-meta">👍 188 &nbsp;|&nbsp; 2024.08.24</span><button class="fav-btn" data-id="61211" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>我失败了
+<div class="post" data-id="61211"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/61211?from=home_weekly" target="_blank" onclick="event.stopPropagation()">关于（抑郁）失败</a></div><div class="post-right"><span class="post-meta">👍 188 &nbsp;|&nbsp; 2024.08.24</span><button class="fav-btn" data-id="61211" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="61211" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="61211" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>我失败了
 或许我已经习惯了失败，忘记了如何重新站起来。
 我的学制比一般人长得多，在同学甚至学弟学妹们陆续完成论文的时候，我却失败了、失败了、失败了，没能完成一部作品。
 刚进校时对科研充满热情的梦想缩水了，每天早上和周末以毕业为目标的奔波又失败了，我没有信心站起来。
@@ -627,7 +632,7 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 过去的一切恍如昨日，重来的一切告诉我需要重新站起来，这让我痛苦不堪。我知道我别无选择。你必须再来一次，你必须坚持下去。我需要从自己的痛苦色情中解脱出来，相信这只是生活，只是时机不</p><details><summary>继续阅读...</summary><p>对，只是我运气不好。
 但今天我没有力气了。我只是想念我的父亲，他是一个不成熟的父亲，什么都不教我，也不尊重我。
 我不能在任何地方谈论它。我犹豫不决，祈求匿名的力量。我感觉很糟糕，但在我的脑海里，我希望我不是唯一一个在挣扎的人。什么是正常的生活？我不想要什么大事，我只想过正常的生活...</p></details></div></div>
-<div class="post" data-id="39301"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/39301?from=home_weekly" target="_blank" onclick="event.stopPropagation()">排名最低的高中 -&gt; 都市工程 -&gt; SKP 硕士 -&gt; 美国工作</a></div><div class="post-right"><span class="post-meta">👍 173 &nbsp;|&nbsp; 2023.02.23</span><button class="fav-btn" data-id="39301" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>这是我第一次在金医生的博客上发表文章。
+<div class="post" data-id="39301"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/39301?from=home_weekly" target="_blank" onclick="event.stopPropagation()">排名最低的高中 -&gt; 都市工程 -&gt; SKP 硕士 -&gt; 美国工作</a></div><div class="post-right"><span class="post-meta">👍 173 &nbsp;|&nbsp; 2023.02.23</span><button class="fav-btn" data-id="39301" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="39301" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="39301" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>这是我第一次在金医生的博客上发表文章。
 金博士网上有很多条件不错的人，所以我写了这篇文章，因为我很遗憾地看到，即使你年纪轻轻，就已经为你现在的条件比不上别人而感到沮丧。
 正如标题所说，我是一个高中排名垫底（模拟考试水原最后一名）-&gt;首都技术学院（首尔X）-&gt;SKP硕士-&gt;目前在美国担任工程师的人，我想我应该分享一下我的故事。
 我想传达这样一个信息：这并不是不可能的，也有这样的人，其他人不应该觉得为时已晚。
@@ -643,7 +648,7 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 - 在研究室里，你不一定要成为优秀的本科生，入学成绩也不能决定你的毕业。
 - 让我们一起努力吧！
 谢谢大家</p></details></div></div>
-<div class="post" data-id="29028"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/29028?from=home_weekly" target="_blank" onclick="event.stopPropagation()">我的顾问</a></div><div class="post-right"><span class="post-meta">👍 171 &nbsp;|&nbsp; 2022.04.02</span><button class="fav-btn" data-id="29028" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>我在实验室工作了 7 年，我的教授指导了我 7 年。
+<div class="post" data-id="29028"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/29028?from=home_weekly" target="_blank" onclick="event.stopPropagation()">我的顾问</a></div><div class="post-right"><span class="post-meta">👍 171 &nbsp;|&nbsp; 2022.04.02</span><button class="fav-btn" data-id="29028" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="29028" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="29028" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>我在实验室工作了 7 年，我的教授指导了我 7 年。
 1.他致力于研究和业务。
 我们实验室从事（非主流）生物免疫/病原微生物学研究。每年和学生一起承担 10 多个项目，没有播客（我们团队平均每年超过 1 亿）。当然，我们的研究经费和学生劳务费都是通过企业提供的，我们的学生也是从我们的研究中毕业的。你有创造良性循环的诀窍。
 在最后展示或提交报告的那天，我们几乎要死要活，但结束后真的很有成就感，因为他直到最后一刻都在全力以赴。
@@ -661,7 +666,7 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 7. 备课
 每年都要花一整天时间备课。尤其是研究生课程，我准备了很多好的论文，一起研究，获得了很多信息。这不正是上大学的目的吗？
 从某种程度上说，这些都是教授应该做的显而易见的事情，但我从未见过像我的教授那样优秀的人，所以我把它们写下来。</p></details></div></div>
-<div class="post" data-id="best_791"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/791" target="_blank" onclick="event.stopPropagation()">这里有很多不切实际的教授，所以这里总结一下研究生的生活费用。</a></div><div class="post-right"><span class="post-meta">👍 168 &nbsp;|&nbsp; 2025.10.09</span><button class="fav-btn" data-id="best_791" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>经常有一些教授在自己家里舒适地工作。他们往往不知道研究生的生活费用有多高。
+<div class="post" data-id="best_791"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/791" target="_blank" onclick="event.stopPropagation()">这里有很多不切实际的教授，所以这里总结一下研究生的生活费用。</a></div><div class="post-right"><span class="post-meta">👍 168 &nbsp;|&nbsp; 2025.10.09</span><button class="fav-btn" data-id="best_791" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_791" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_791" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>经常有一些教授在自己家里舒适地工作。他们往往不知道研究生的生活费用有多高。
 伙食费：5,000*3 餐*30 天=450,000 韩元，按一天 3 餐而不在外就餐计算。
 房租：如果住在学校门口，平均为 400,000 韩元。
 水电费：如果你像人一样洗漱，冬暖夏凉 - 平均 50,000 韩元
@@ -674,7 +679,7 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 这里再补充一点人权问题。
 如果年龄大了，就应该谈恋爱，偶尔可以和朋友喝喝酒，为了保健，尤其是研究人员，应该多运动，因为背部、肩部和颈部的健</p><details><summary>继续阅读...</summary><p>康很重要。 业余爱好......老实说，对于研究生来说，拥有这些是件奢侈的事情，但假设你有的话，150 个也坚持不了多久。
 当然，你不需要你的教授为你做这一切，别误会我的意思。但是，我希望你们不要用 &quot;你会支付他们所有的生活费用 &quot;这样的话来诱惑学生。</p></details></div></div>
-<div class="post" data-id="best_103"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/103" target="_blank" onclick="event.stopPropagation()">关于研究生院，每个人都忘记了什么，也一定会忘记什么</a></div><div class="post-right"><span class="post-meta">👍 151 &nbsp;|&nbsp; 2025.04.23</span><button class="fav-btn" data-id="best_103" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>在各种文章中，教授应该这样，研究生应该那样。我不知道在关于聘任、就业、公开露面、排名等的讨论和批评中，研究生院的本质是否被遗忘了。
+<div class="post" data-id="best_103"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/103" target="_blank" onclick="event.stopPropagation()">关于研究生院，每个人都忘记了什么，也一定会忘记什么</a></div><div class="post-right"><span class="post-meta">👍 151 &nbsp;|&nbsp; 2025.04.23</span><button class="fav-btn" data-id="best_103" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_103" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_103" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>在各种文章中，教授应该这样，研究生应该那样。我不知道在关于聘任、就业、公开露面、排名等的讨论和批评中，研究生院的本质是否被遗忘了。
 研究生院，尤其是博士课程的本质是学术的发展......这听起来太天真了。
 也许在韩国社会的大多数领域，关于本质的讨论都被视为天真，我想在这种依靠个人良知来维持薄弱制度的文化中找到其中的原因。
 即使在日冕大流行期间，人们也将责任归咎于不戴口罩的个人、加班加点的文化，甚至结婚和生育，这些仍然被视为 &quot;怎么会有人这样做&quot;。
@@ -685,13 +690,13 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 我认为，一个好的制度，即使在腐化的个人聚集在一起时，也能保持其本质形式。 一个依靠个人良知的制度，很难让人不同意，比如说，当密码是 0000 时，&quot;请不要入侵&quot;。
 我认为整个研究生学位和奖励制度需要彻底改革，人们应该为符合其本质的成就获得适当的奖励。 但在现行制度下，已经有太多人获得了奖励，他们也在努力，我想不出有什么办法可以解决这个问题，所以一厢情愿地讨论本质是幼稚的。
 絮絮叨叨说了这么多，都是我对研究生本质的一些微弱的、现已被遗忘的想法，祝愿每一位读到这篇文章的人都能在人生的道路上越走越远。</p></details></div></div>
-<div class="post" data-id="best_839"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/839" target="_blank" onclick="event.stopPropagation()">让尚明大学的讲师到首尔国立大学任教，这说不通吧？</a></div><div class="post-right"><span class="post-meta">👍 144 &nbsp;|&nbsp; 2025.10.16</span><button class="fav-btn" data-id="best_839" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>박사 취득 후 연구를 전혀 안 하고, 겉멋만 잔멋만 가득한 상명대 출신 강사 수업 듣 다가 현타 와서 글씀~~?
+<div class="post" data-id="best_839"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/839" target="_blank" onclick="event.stopPropagation()">让尚明大学的讲师到首尔国立大学任教，这说不通吧？</a></div><div class="post-right"><span class="post-meta">👍 144 &nbsp;|&nbsp; 2025.10.16</span><button class="fav-btn" data-id="best_839" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_839" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_839" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>박사 취득 후 연구를 전혀 안 하고, 겉멋만 잔멋만 가득한 상명대 출신 강사 수업 듣 다가 현타 와서 글씀~~?
 教官的水平原来是这样的????我真的很好奇，问一下！！！！
 首尔大学在选拔讲师的时候不看研究成绩和出身大学吗？
 -------------------------
 我认为提及具体的大学名称可能会造成误导！
 我宁愿把标题改为&lt;一个不称职的反社会者在大学讲堂里有意义吗？</p></div></div>
-<div class="post" data-id="best_285"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/285" target="_blank" onclick="event.stopPropagation()">我就要毕业了！教授，你配吗？</a></div><div class="post-right"><span class="post-meta">👍 142 &nbsp;|&nbsp; 2025.06.09</span><button class="fav-btn" data-id="best_285" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>我完成了硕士答辩，现在正准备搬出去。
+<div class="post" data-id="best_285"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/285" target="_blank" onclick="event.stopPropagation()">我就要毕业了！教授，你配吗？</a></div><div class="post-right"><span class="post-meta">👍 142 &nbsp;|&nbsp; 2025.06.09</span><button class="fav-btn" data-id="best_285" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_285" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_285" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>我完成了硕士答辩，现在正准备搬出去。
 我经历了很多糟糕的事情
 我做过很多烂工作，比如开车接送我去车站，叫我照顾实验室里喝酒呕吐的学生。
 可当我毕业离开时，他扔给我一个任务，让我写个计划然后离开。
@@ -713,7 +718,7 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 哦，我忘了提那些要写论文的兼职人员了。
 那是非常糟糕的，我们再也不要看到它了！--三年级硕士生
 -给你下毒的三年级硕士生--。</p></details></div></div>
-<div class="post" data-id="best_1379"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/1379" target="_blank" onclick="event.stopPropagation()">女性研究人员为何如此爱抱怨？</a></div><div class="post-right"><span class="post-meta">👍 139 &nbsp;|&nbsp; 2026.03.13</span><button class="fav-btn" data-id="best_1379" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>当我看到研究人员、博士、教授时，我总觉得他们对宏观结构或框架的了解太少了。
+<div class="post" data-id="best_1379"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/1379" target="_blank" onclick="event.stopPropagation()">女性研究人员为何如此爱抱怨？</a></div><div class="post-right"><span class="post-meta">👍 139 &nbsp;|&nbsp; 2026.03.13</span><button class="fav-btn" data-id="best_1379" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_1379" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_1379" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>当我看到研究人员、博士、教授时，我总觉得他们对宏观结构或框架的了解太少了。
 对宏观结构或框架的理解是如此之少
 宏观结构或框架。
 即使我们一起做研究，他们也沉迷于表面。
@@ -737,25 +742,25 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 我觉得即使是在研究领域，女性也只是在抱怨和发牢骚。
 也许这只是我的研究领域，但...
 참</p></div></div>
-<div class="post" data-id="best_385"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/385" target="_blank" onclick="event.stopPropagation()">哈......一个学生正在实验室学习。</a></div><div class="post-right"><span class="post-meta">👍 134 &nbsp;|&nbsp; 2025.07.03</span><button class="fav-btn" data-id="best_385" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>对不起...
+<div class="post" data-id="best_385"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/385" target="_blank" onclick="event.stopPropagation()">哈......一个学生正在实验室学习。</a></div><div class="post-right"><span class="post-meta">👍 134 &nbsp;|&nbsp; 2025.07.03</span><button class="fav-btn" data-id="best_385" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_385" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_385" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>对不起...
 我也在实验室学习，但我的朋友告诉我，他在学习时被人骂了....。
 我想我不该那么做...
 对不起...</p></div></div>
-<div class="post" data-id="best_579"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/579" target="_blank" onclick="event.stopPropagation()">首次引用桑葚味...</a></div><div class="post-right"><span class="post-meta">👍 132 &nbsp;|&nbsp; 2025.08.17</span><button class="fav-btn" data-id="best_579" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>去年我还是本科生的时候，我在一次会议上做了报告，赢得了一个特刊，并以某种方式成功地发表了我的论文。我对这篇论文倾注了很多心血，但结果却令人失望。
+<div class="post" data-id="best_579"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/579" target="_blank" onclick="event.stopPropagation()">首次引用桑葚味...</a></div><div class="post-right"><span class="post-meta">👍 132 &nbsp;|&nbsp; 2025.08.17</span><button class="fav-btn" data-id="best_579" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_579" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_579" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>去年我还是本科生的时候，我在一次会议上做了报告，赢得了一个特刊，并以某种方式成功地发表了我的论文。我对这篇论文倾注了很多心血，但结果却令人失望。
 然而，当我今天查看谷歌学术时，我看到我最喜欢的新星博士的弟弟引用了我的论文。 这也是我想写一次的期刊。
 论文发表时我并不激动，但这第一次引用真的太疯狂了。 我感觉一篇非常好的论文认可了我（论文中有一段就是对我论文的描述）。
 我还感觉到我写的东西不是网络垃圾，这让我总是有点自暴自弃，但其实不是，而且还能给别人带来启发......
 我希望今后能更加努力，让自己也能在那本期刊上发表论文，成为那种能给别人带来启发、让别人认可自己文章的人。
 谢谢大家</p></div></div>
-<div class="post" data-id="best_112"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/112" target="_blank" onclick="event.stopPropagation()">研究生院似乎是一个令人沮丧的环境</a></div><div class="post-right"><span class="post-meta">👍 125 &nbsp;|&nbsp; 2025.04.26</span><button class="fav-btn" data-id="best_112" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>从根本上说，又回到了业绩导向，如果开会没有结果，就会破罐子破摔，甚至关系到毕业，如果什么都做不了，就容易自责、纠结、抑郁，然后事情一发不可收拾，变成恶性循环......如果再加上完美主义的学长或教授，就更让人窒息了......
+<div class="post" data-id="best_112"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/112" target="_blank" onclick="event.stopPropagation()">研究生院似乎是一个令人沮丧的环境</a></div><div class="post-right"><span class="post-meta">👍 125 &nbsp;|&nbsp; 2025.04.26</span><button class="fav-btn" data-id="best_112" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_112" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_112" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>从根本上说，又回到了业绩导向，如果开会没有结果，就会破罐子破摔，甚至关系到毕业，如果什么都做不了，就容易自责、纠结、抑郁，然后事情一发不可收拾，变成恶性循环......如果再加上完美主义的学长或教授，就更让人窒息了......
 在别人眼里，我不知道自己是否应该因为研究有多好，而放弃自己的心理健康和身体健康，事实上，这在客观上是正确的，但从进入研究生院的立场来看，环境本身似乎让我觉得眼前的研究就是我的一切，就是我的生命本身。
 开始读研究生后，在只有失败的情况下，哪怕是迈出了一小步的成就感，我都觉得自己好了很多，但从那以后，就再也没有进步，什么都没有成功，所以如今，无底的抑郁又悄然而至，甚至在每天做了好几次实验后，我都在想，我是不是应该死了算了......死了不是更好吗？思来想去，于是一个人想了几个小时，写了这篇文章，所以是一篇没有结论、没有营养价值的漫谈，但是......从远处看，即使现在什么都不管用了，什么都没有了，人生毁了也不是一件多么了不起的事情......我想把这句话传达给我自己，也传达给其他可能正在挣扎的研究生......有了在攻读学位期间真正去参加另一个实验室葬礼的经历，看到</p><details><summary>继续阅读...</summary><p>自己不断地提起那段死亡的记忆，我更加觉得，说实话，是死了好呢，还是毕业后即使什么都没有了，也要好好活下去......世界上还有很多值得享受的东西，怀着热情做研究当然很重要，但如果把研究当成自己，认为如果失败了，自己就没有价值了，那就和热情是两个领域了......</p></details></div></div>
-<div class="post" data-id="best_1487"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/1487" target="_blank" onclick="event.stopPropagation()">为什么我个人认为女孩不适合科研或职场？</a></div><div class="post-right"><span class="post-meta">👍 124 &nbsp;|&nbsp; 2026.05.02</span><button class="fav-btn" data-id="best_1487" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>无论是研究还是工作，你都必须与他人合作和讨论。
+<div class="post" data-id="best_1487"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/1487" target="_blank" onclick="event.stopPropagation()">为什么我个人认为女孩不适合科研或职场？</a></div><div class="post-right"><span class="post-meta">👍 124 &nbsp;|&nbsp; 2026.05.02</span><button class="fav-btn" data-id="best_1487" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_1487" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_1487" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>无论是研究还是工作，你都必须与他人合作和讨论。
 你必须能够与你不喜欢的人交谈和合作，但女孩做不到这一点。
 男生在不得不与他们不喜欢的人合作时，只会装出一副很好的样子继续合作。
 女孩做不到这一点。  她们就是不想碰自己不喜欢的人，哪怕对方已经死了。有些情况下，整个团队的气氛都会因此被破坏。
 在我身边，这样的例子太多了，我不能说这是草率的概括，所以我不会反驳。</p></div></div>
-<div class="post" data-id="best_765"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/765" target="_blank" onclick="event.stopPropagation()">显然，至少从教授的角度来看，工作与生活的平衡是个热门话题、</a></div><div class="post-right"><span class="post-meta">👍 121 &nbsp;|&nbsp; 2025.10.04</span><button class="fav-btn" data-id="best_765" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>工作与生活是可以平衡的。
+<div class="post" data-id="best_765"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/765" target="_blank" onclick="event.stopPropagation()">显然，至少从教授的角度来看，工作与生活的平衡是个热门话题、</a></div><div class="post-right"><span class="post-meta">👍 121 &nbsp;|&nbsp; 2025.10.04</span><button class="fav-btn" data-id="best_765" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_765" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_765" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>工作与生活是可以平衡的。
 研究生院是介于工作和学生之间的一个奇怪的中间地带、
 这是一个双赢的局面，对吗？
 这一切都很好，但从我作为教授的角度来看，事情是这样的。
@@ -771,7 +776,7 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 不幸的是，工作与生活的平衡不仅仅是一个个人问题。 如果你出生在韩国，并在韩国做研究，你就不可避免地会减少这种价值观。 这没有道理，不是吗？ 举个极端的例子（我在哲学上很极端，对吧？），假设你是美国哈佛大学的研究生，而你是索马里摩加迪沙的研究生，研究的是同一个课题，他们都有同样的工作与生活平衡。会发生什么呢？大致就是这样。
 我正在看评论，但这只是我的看法，我周围的教授们也是这么想的，我写这篇文章并不是谴责它的好坏、对错，而是因为知道教授们也是这么想的，与其谴责它或者因为不理解它而爆发，不如理解它并思考如何应对它，反正有这种想法的人才是研究生院里的掌权者。
 我也会尽量保护学生的工作与生活平衡。但我的表现肯定不好，所以我工作得更多，家务活也要我来做，但大多数教授并不像我这样想。教授们都有家庭，年纪也大了，如果稍微劳累过度，他们的健康就会受到影响。 我想把工作与生活不平衡的时代传承下去，但这很难做到。 学生们必须配合。</p></details></div></div>
-<div class="post" data-id="best_177"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/177" target="_blank" onclick="event.stopPropagation()">首尔大学录取了我，但后来又取消了，说是搞错了。</a></div><div class="post-right"><span class="post-meta">👍 120 &nbsp;|&nbsp; 2025.05.14</span><button class="fav-btn" data-id="best_177" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>大家好，我就是本文（链接）中的主人公。
+<div class="post" data-id="best_177"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/177" target="_blank" onclick="event.stopPropagation()">首尔大学录取了我，但后来又取消了，说是搞错了。</a></div><div class="post-right"><span class="post-meta">👍 120 &nbsp;|&nbsp; 2025.05.14</span><button class="fav-btn" data-id="best_177" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_177" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_177" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>大家好，我就是本文（链接）中的主人公。
 四月下旬，我收到了首尔国立大学公共管理学院的初次录取邮件。 我收到了三封确认函，一个面试前的电话，并花了很多时间和精力准备面试。 结果呢？ 一封写着 &quot;我们很抱歉，我们会改进 &quot;的信，没有赔偿，没有问责，没有道歉。
 没有赔偿，没有问责，没有道歉--什么都没有。
 据说首尔国立大学是韩国最好的教育管理机构。
@@ -782,15 +787,15 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 你们中有人有过类似的经历吗？
 或者你对解决这些问题的制度改进有什么建议？
 请在评论中告诉我们。我愿意畅所欲言，帮助改变现状。</p></div></div>
-<div class="post" data-id="best_490"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/490" target="_blank" onclick="event.stopPropagation()">想知道我是否在研究生阶段做出了错误的选择</a></div><div class="post-right"><span class="post-meta">👍 118 &nbsp;|&nbsp; 2025.08.02</span><button class="fav-btn" data-id="best_490" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>我家是基本收入家庭，住在公租房里，没有债务，但父母都是日工，每天都朝不保夕。自然，他们没有退休计划，没有固定收入，过一天算一天。
+<div class="post" data-id="best_490"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/490" target="_blank" onclick="event.stopPropagation()">想知道我是否在研究生阶段做出了错误的选择</a></div><div class="post-right"><span class="post-meta">👍 118 &nbsp;|&nbsp; 2025.08.02</span><button class="fav-btn" data-id="best_490" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_490" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_490" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>我家是基本收入家庭，住在公租房里，没有债务，但父母都是日工，每天都朝不保夕。自然，他们没有退休计划，没有固定收入，过一天算一天。
 因为我是中学生，找奖学金，拿奖学金，所以零花钱、学费等都解决了。我想快点赚钱，让父母过上好日子，我厌倦了贫穷。
 我考上了第一志愿的大学，但父母说首尔的生活费很贵，所以我就留在了家附近。那时候我哭了很多次。
 为了提高自己的能力，我成为了一名本科生研究员，这很适合我。我开始参加会议，并就本科课题撰写论文，因此我的教授积极鼓励我攻读硕士学位，我就在自己的大学开始了硕士学习。虽然我的情况有点贪心，但我非常想做研究。
 幸运的是，这是个不错的领域，我做得很好（IF 200 亿美元 !!!!!!），马上就要毕业了。我说服父母让我读博士、
 问题是我父亲突然病了。他不是突然生病的，但我昨天听到了这个消息。他需要做一个大手术，但因为他的工作很危险，所以保险不赔。我妈妈告诉我，手术费用超出了我们的承受能力，所以我们不得不四处借钱。他因为生病不能工作，体力大不如前。
 我得了疥疮。我非常痛恨自己。我觉得我应该取消博士入学资格，现在就去找工作，但我怨恨自己，因为我知道我做不到，因为我太</p><details><summary>继续阅读...</summary><p>贪婪了。我真希望能在本科毕业后马上存钱，这样我的父母就会只担心自己，而不担心钱了。我怎么才能有钱呢？我觉得自己快吐了。我应该找份工作的。</p></details></div></div>
-<div class="post" data-id="best_384"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/384" target="_blank" onclick="event.stopPropagation()">请毕业于身份清洗专业。</a></div><div class="post-right"><span class="post-meta">👍 117 &nbsp;|&nbsp; 2025.07.03</span><button class="fav-btn" data-id="best_384" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>!</p></div></div>
-<div class="post" data-id="best_725"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/725" target="_blank" onclick="event.stopPropagation()">我是一名教授，我的学生太紧张了</a></div><div class="post-right"><span class="post-meta">👍 116 &nbsp;|&nbsp; 2025.09.24</span><button class="fav-btn" data-id="best_725" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>我有全额学费奖学金，工资是标准的 70% - 100%。
+<div class="post" data-id="best_384"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/384" target="_blank" onclick="event.stopPropagation()">请毕业于身份清洗专业。</a></div><div class="post-right"><span class="post-meta">👍 117 &nbsp;|&nbsp; 2025.07.03</span><button class="fav-btn" data-id="best_384" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_384" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_384" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>!</p></div></div>
+<div class="post" data-id="best_725"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/725" target="_blank" onclick="event.stopPropagation()">我是一名教授，我的学生太紧张了</a></div><div class="post-right"><span class="post-meta">👍 116 &nbsp;|&nbsp; 2025.09.24</span><button class="fav-btn" data-id="best_725" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_725" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_725" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>我有全额学费奖学金，工资是标准的 70% - 100%。
 你为什么不做任何作业？
 这都是为了研究基金会，所以我每年要写 2-3 次报告和起草提案。
 我忙着做研究，是因为有人让我这么做。
@@ -799,9 +804,9 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 你是学生，花在研究上的时间比我还少。
 我每年花三四百块钱对她好，送她出国，但真的很辛苦。
 反正我的退休年龄是有保障的，但我要边教书边玩；</p></div></div>
-<div class="post" data-id="best_2"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/2" target="_blank" onclick="event.stopPropagation()">听到SKP硕士生的真实学历，你会怎么想？</a></div><div class="post-right"><span class="post-meta">👍 112 &nbsp;|&nbsp; 2025.04.06</span><button class="fav-btn" data-id="best_2" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>你有过这样的经历吗？
+<div class="post" data-id="best_2"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/2" target="_blank" onclick="event.stopPropagation()">听到SKP硕士生的真实学历，你会怎么想？</a></div><div class="post-right"><span class="post-meta">👍 112 &nbsp;|&nbsp; 2025.04.06</span><button class="fav-btn" data-id="best_2" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_2" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_2" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>你有过这样的经历吗？
 你是否有过这样的经历：因为你是 SKP 的硕士生，所以你觉得 &quot;哦......&quot;，但实际上你是一个内心有点恼火的本科生？</p></div></div>
-<div class="post" data-id="best_1271"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/1271" target="_blank" onclick="event.stopPropagation()">我申请成为一名黑白教授，但没有成功。</a></div><div class="post-right"><span class="post-meta">👍 110 &nbsp;|&nbsp; 2026.01.27</span><button class="fav-btn" data-id="best_1271" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>我在韩国一所中上等学校读完本科，在美国读完博士，然后在一家美国科技公司工作。
+<div class="post" data-id="best_1271"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/1271" target="_blank" onclick="event.stopPropagation()">我申请成为一名黑白教授，但没有成功。</a></div><div class="post-right"><span class="post-meta">👍 110 &nbsp;|&nbsp; 2026.01.27</span><button class="fav-btn" data-id="best_1271" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_1271" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_1271" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>我在韩国一所中上等学校读完本科，在美国读完博士，然后在一家美国科技公司工作。
 由于父母的压力和教授想成为高水平学者的病症，我申请了几所学校，想回到韩国。
 我申请了好几所学校，都想着回韩国。
 毕业已经有一段时间了，所以我的顶级论文中还有一部分没有被认可为成果，除此之外，我认为自己还缺乏素质。
@@ -832,18 +837,18 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 我们想搬到韩国，过一种更轻松的生活，我们的孩子是美国公民，所以我们让他们选择韩国还是美国。
 如果你和我一样，不喜欢韩国文化，或者对成为高材生的梦想心存疑虑。
 那就离开肮脏龌龊的韩国学术界，到美国的产业界去追求你的梦想吧。</p></details></div></div>
-<div class="post" data-id="best_1103"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/1103" target="_blank" onclick="event.stopPropagation()">您看到有关忠北国立大学校长的新闻了吗？</a></div><div class="post-right"><span class="post-meta">👍 109 &nbsp;|&nbsp; 2025.12.05</span><button class="fav-btn" data-id="best_1103" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>当上忠北大学校长的是一个喊着尹汝珍的极右分子，但真正的忠北大学是什么水平呢？
+<div class="post" data-id="best_1103"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/1103" target="_blank" onclick="event.stopPropagation()">您看到有关忠北国立大学校长的新闻了吗？</a></div><div class="post-right"><span class="post-meta">👍 109 &nbsp;|&nbsp; 2025.12.05</span><button class="fav-btn" data-id="best_1103" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_1103" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_1103" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>当上忠北大学校长的是一个喊着尹汝珍的极右分子，但真正的忠北大学是什么水平呢？
 为了制造戒严理由，向朝鲜大量投放传单、无人机、点穴式打击，诱发战争，但没有任何反应，于是在12月3日尝试反宪法戒严，但最后还是自相残杀，20多岁就中枪了吧？
 是尹锡烈酗酒、不上班、削减研发预算、用完韩国股票、用谎言掩盖谎言、维护生活本身就是谎言的金根熙、戒严后指责下属。
 而这个支持尹锡烈的人却当上了国会主席？</p></div></div>
-<div class="post" data-id="best_149"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/149" target="_blank" onclick="event.stopPropagation()">金博士你不恢复五角星吗？</a></div><div class="post-right"><span class="post-meta">👍 109 &nbsp;|&nbsp; 2025.05.06</span><button class="fav-btn" data-id="best_149" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>如果判定金博士的网是个好东西，难道不值得恢复吗？
+<div class="post" data-id="best_149"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/149" target="_blank" onclick="event.stopPropagation()">金博士你不恢复五角星吗？</a></div><div class="post-right"><span class="post-meta">👍 109 &nbsp;|&nbsp; 2025.05.06</span><button class="fav-btn" data-id="best_149" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_149" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_149" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>如果判定金博士的网是个好东西，难道不值得恢复吗？
 快到研究生入学季了，没有它很不方便。
 即使被起诉，管理方也不打算保留金博士的创作理念吧？
 我想他们只会推广实验室，做做广告，赚一笔像样的钱，也不会给教授们惹麻烦、
 但我想问，这是否就是你们的真正目的？
 让我伤心的是，小而珍贵的 GimDoctor.net 已经不复存在了，它是研究生解决信息不对称和避免被训斥的唯一途径。
 我觉得它是一个可以改变韩国科研文化的分叉点，我很遗憾自己把它扼杀在了萌芽状态。</p></div></div>
-<div class="post" data-id="best_649"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/649" target="_blank" onclick="event.stopPropagation()">2025 年韩国研究生排名（包括 IST）</a></div><div class="post-right"><span class="post-meta">👍 108 &nbsp;|&nbsp; 2025.09.03</span><button class="fav-btn" data-id="best_649" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>最近，IST 也在板上钉钉地打起了排名战，我总结了一下。
+<div class="post" data-id="best_649"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/649" target="_blank" onclick="event.stopPropagation()">2025 年韩国研究生排名（包括 IST）</a></div><div class="post-right"><span class="post-meta">👍 108 &nbsp;|&nbsp; 2025.09.03</span><button class="fav-btn" data-id="best_649" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_649" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_649" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>最近，IST 也在板上钉钉地打起了排名战，我总结了一下。
 大学排名与论文数量师生比的考量
 *关键点
 由于 QS 排名操纵案，启明从第一降到了并列第一。
@@ -853,7 +858,7 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 -期望值比我想象的要高
 -这所大学只是...
 다들논문많이써라화이팅</p></div></div>
-<div class="post" data-id="best_483"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/483" target="_blank" onclick="event.stopPropagation()">金博士，&quot;网络 &quot;正在失去其作为 &quot;研究者社区 &quot;的特性</a></div><div class="post-right"><span class="post-meta">👍 103 &nbsp;|&nbsp; 2025.07.31</span><button class="fav-btn" data-id="best_483" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>KimDoctoralNet 最初创建的目的是提供有关研究生院、研究实践、顾问信息和职业建议等方面的建议。 然而，留言板的基调已经模糊到了难以分辨它是一个以研究人员为基础的社区，还是一个匿名的政治社区的地步。
+<div class="post" data-id="best_483"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/483" target="_blank" onclick="event.stopPropagation()">金博士，&quot;网络 &quot;正在失去其作为 &quot;研究者社区 &quot;的特性</a></div><div class="post-right"><span class="post-meta">👍 103 &nbsp;|&nbsp; 2025.07.31</span><button class="fav-btn" data-id="best_483" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_483" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_483" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>KimDoctoralNet 最初创建的目的是提供有关研究生院、研究实践、顾问信息和职业建议等方面的建议。 然而，留言板的基调已经模糊到了难以分辨它是一个以研究人员为基础的社区，还是一个匿名的政治社区的地步。
 最近几个月，我们看到
 - 对特定政治问题的情绪化咆哮
 - 带脏话的嘲讽帖子
@@ -884,7 +889,7 @@ body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
 这篇文章也邀请所有看到它的人考虑一下社区应该朝哪个方向发展。
 如果你同意，请在评论中告诉我，也希望你能与其他人分享。
 - 我不善于雄辩地写作，所以我请 GPT 来帮助我说出我想说的话。</p></details></div></div>
-<div class="post" data-id="best_406"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/406" target="_blank" onclick="event.stopPropagation()">我希望科学技术停止发展</a></div><div class="post-right"><span class="post-meta">👍 103 &nbsp;|&nbsp; 2025.07.09</span><button class="fav-btn" data-id="best_406" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>科学技术还需要更进一步吗？
+<div class="post" data-id="best_406"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/406" target="_blank" onclick="event.stopPropagation()">我希望科学技术停止发展</a></div><div class="post-right"><span class="post-meta">👍 103 &nbsp;|&nbsp; 2025.07.09</span><button class="fav-btn" data-id="best_406" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_406" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_406" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>科学技术还需要更进一步吗？
 无论是医学、人工智能、加密货币还是智能手机
 我不需要更多
 我觉得这是整个社会的发展......
@@ -911,7 +916,7 @@ Coupang 不需要有，清晨的快递也不需要有。
 每天都在越建越高，最后大家都输了，它就倒了。
 我不知道我今天是否只是在垒砖。
 我想听听其他人的想法。</p></div></div>
-<div class="post" data-id="best_8"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/8" target="_blank" onclick="event.stopPropagation()">我曾经非常不尊重我的教授。</a></div><div class="post-right"><span class="post-meta">👍 103 &nbsp;|&nbsp; 2025.03.25</span><button class="fav-btn" data-id="best_8" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>本科二年级时，在第一堂专业课上，我觉得教授的课有点粗糙。
+<div class="post" data-id="best_8"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/8" target="_blank" onclick="event.stopPropagation()">我曾经非常不尊重我的教授。</a></div><div class="post-right"><span class="post-meta">👍 103 &nbsp;|&nbsp; 2025.03.25</span><button class="fav-btn" data-id="best_8" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_8" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_8" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>本科二年级时，在第一堂专业课上，我觉得教授的课有点粗糙。
 我当时就有一种感觉，这个人可能是大学教授。
 (当然，当时我把高中老师和大学教授的素质作了比较）。
 大学毕业进入研究生院后，我对教授的工作量感到惊讶。
@@ -925,12 +930,12 @@ Coupang 不需要有，清晨的快递也不需要有。
 我感受到了心中的痛苦与挣扎。
 教授是哪个学校、哪个系的，也许并不重要。
 如今，教授这一职业本身受到了尊重。</p></div></div>
-<div class="post" data-id="best_660"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/660" target="_blank" onclick="event.stopPropagation()">毕业生排名_真实最终汇总</a></div><div class="post-right"><span class="post-meta">👍 102 &nbsp;|&nbsp; 2025.09.10</span><button class="fav-btn" data-id="best_660" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>麻省理工学院
+<div class="post" data-id="best_660"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/660" target="_blank" onclick="event.stopPropagation()">毕业生排名_真实最终汇总</a></div><div class="post-right"><span class="post-meta">👍 102 &nbsp;|&nbsp; 2025.09.10</span><button class="fav-btn" data-id="best_660" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_660" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_660" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>麻省理工学院
 ----
 其他
 ----
 最近看到很多连续的帖子，我们不要在韩国吵架了^^。</p></div></div>
-<div class="post" data-id="best_1199"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/1199" target="_blank" onclick="event.stopPropagation()">教授，请注意节制。</a></div><div class="post-right"><span class="post-meta">👍 101 &nbsp;|&nbsp; 2025.12.30</span><button class="fav-btn" data-id="best_1199" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>我硕士毕业了，这次也找到了工作，但我的教授一直给我发kakaotalk，让我读博士。
+<div class="post" data-id="best_1199"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/best/1199" target="_blank" onclick="event.stopPropagation()">教授，请注意节制。</a></div><div class="post-right"><span class="post-meta">👍 101 &nbsp;|&nbsp; 2025.12.30</span><button class="fav-btn" data-id="best_1199" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button><button class="del-btn" data-id="best_1199" onclick="event.stopPropagation();startDelete(this)" title="隐藏">✕</button><span class="del-confirm" data-id="best_1199" style="display:none">隐藏？<button onclick="event.stopPropagation();doHide(this.parentNode)">是</button><button onclick="event.stopPropagation();cancelDelete(this.parentNode)">否</button></span></div></div><div class="post-body"><p>我硕士毕业了，这次也找到了工作，但我的教授一直给我发kakaotalk，让我读博士。
 他一直说项目人手不够，如果我读了博士就不会这样了。
 读了博士就能当教授，就能当国家级研究员，为什么不听他的呢？
 事实上，你隔壁实验室那个读了 7 年博士的学长毕业后，找了一份工作，也没让我省心。
@@ -954,9 +959,10 @@ function switchView(v){
   applyView();
 }
 function applyView(){
-  var v=document.body.dataset.view,favs=getFavs(),n=0;
+  var v=document.body.dataset.view,favs=getFavs(),hidden=getHidden(),n=0;
   document.querySelectorAll('.post').forEach(function(post){
     var id=post.dataset.id,body=post.querySelector('.post-body');
+    if(hidden.has(id)){post.style.display='none';return}
     if(v==='fav'){
       var show=favs.has(id);
       post.style.display=show?'':'none';
@@ -991,6 +997,17 @@ function updateFavUI(){
   });
   var c=favs.size;
   document.getElementById('fav-badge').textContent=c?' ('+c+')':'';
+}
+function getHidden(){try{return new Set(JSON.parse(localStorage.getItem('phdkim_hidden')||'[]'))}catch(e){return new Set()}}
+function saveHidden(h){localStorage.setItem('phdkim_hidden',JSON.stringify([...h]))}
+function startDelete(btn){btn.style.display='none';btn.nextElementSibling.style.display=''}
+function cancelDelete(span){span.style.display='none';span.previousElementSibling.style.display=''}
+function doHide(span){
+  var id=span.dataset.id,hidden=getHidden();
+  hidden.add(id);saveHidden(hidden);
+  var favs=getFavs();if(favs.has(id)){favs.delete(id);saveFavs(favs);updateFavUI()}
+  var post=span.closest('.post');if(post)post.style.display='none';
+  if(document.body.dataset.view==='fav')applyView();
 }
 window.addEventListener('DOMContentLoaded',function(){
   var v=sessionStorage.getItem('phdkim_view')||'toc';

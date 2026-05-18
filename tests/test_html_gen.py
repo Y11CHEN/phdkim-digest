@@ -180,3 +180,22 @@ def test_generated_html_has_del_css():
     out = generate_html([])
     assert '.del-btn' in out
     assert '.del-confirm' in out
+
+
+# ── Hide-post: JS ─────────────────────────────────────────────────────────
+
+def test_generated_html_has_hide_js_functions():
+    from scraper.html_gen import generate_html
+    out = generate_html([])
+    for name in ('getHidden', 'saveHidden', 'startDelete', 'cancelDelete', 'doHide'):
+        assert name in out, f"Missing JS function: {name}"
+    assert 'phdkim_hidden' in out
+
+
+def test_applyview_calls_gethidden():
+    from scraper.html_gen import generate_html
+    out = generate_html([])
+    idx = out.find('function applyView')
+    assert idx != -1
+    # getHidden must appear inside applyView body (within 400 chars after declaration)
+    assert 'getHidden' in out[idx:idx + 400]

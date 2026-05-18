@@ -148,9 +148,10 @@ function switchView(v){{
   applyView();
 }}
 function applyView(){{
-  var v=document.body.dataset.view,favs=getFavs(),n=0;
+  var v=document.body.dataset.view,favs=getFavs(),hidden=getHidden(),n=0;
   document.querySelectorAll('.post').forEach(function(post){{
     var id=post.dataset.id,body=post.querySelector('.post-body');
+    if(hidden.has(id)){{post.style.display='none';return}}
     if(v==='fav'){{
       var show=favs.has(id);
       post.style.display=show?'':'none';
@@ -185,6 +186,17 @@ function updateFavUI(){{
   }});
   var c=favs.size;
   document.getElementById('fav-badge').textContent=c?' ('+c+')':'';
+}}
+function getHidden(){{try{{return new Set(JSON.parse(localStorage.getItem('phdkim_hidden')||'[]'))}}catch(e){{return new Set()}}}}
+function saveHidden(h){{localStorage.setItem('phdkim_hidden',JSON.stringify([...h]))}}
+function startDelete(btn){{btn.style.display='none';btn.nextElementSibling.style.display=''}}
+function cancelDelete(span){{span.style.display='none';span.previousElementSibling.style.display=''}}
+function doHide(span){{
+  var id=span.dataset.id,hidden=getHidden();
+  hidden.add(id);saveHidden(hidden);
+  var favs=getFavs();if(favs.has(id)){{favs.delete(id);saveFavs(favs);updateFavUI()}}
+  var post=span.closest('.post');if(post)post.style.display='none';
+  if(document.body.dataset.view==='fav')applyView();
 }}
 window.addEventListener('DOMContentLoaded',function(){{
   var v=sessionStorage.getItem('phdkim_view')||'toc';
