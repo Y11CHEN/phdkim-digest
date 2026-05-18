@@ -7,7 +7,7 @@ _BODY_COLLAPSE_THRESHOLD = 500
 
 
 def generate_html(posts: list) -> str:
-    posts_sorted = sorted(posts, key=lambda p: p["likes"], reverse=True)
+    posts_sorted = sorted(posts, key=lambda p: p.get("likes", 0), reverse=True)
     updated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     total = len(posts_sorted)
 
