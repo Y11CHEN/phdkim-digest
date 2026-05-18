@@ -1,3 +1,4 @@
+# Python 3.12+
 requests>=2.31.0
 beautifulsoup4>=4.12.3
 deepl>=1.18.0
