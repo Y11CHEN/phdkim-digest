@@ -1,5 +1,6 @@
 import os
 import sys
+from datetime import date as _date
 from pathlib import Path
 import requests
 
@@ -37,6 +38,7 @@ def run(api_key: str) -> int:
         print(f"  Processing: {p['title_ko'][:60]} (👍 {p['likes']})")
         body_ko, date = fetch_post_detail(p["url"], session)
         p["date"] = date
+        p["scraped_at"] = _date.today().isoformat()
         p["title_zh"] = translate_text(p["title_ko"], api_key)
         p["body_ko"] = body_ko
         p["body_zh"] = translate_text(body_ko, api_key)
