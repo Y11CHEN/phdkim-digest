@@ -70,15 +70,6 @@ def fetch_board_page(page_num: int, session: requests.Session) -> list[dict]:
     return posts
 
 
-def fetch_post_content(url: str, session: requests.Session) -> str:
-    """Returns full body text of a post."""
-    soup = _get(session, url)
-    body_el = soup.select_one("div.content-area")
-    if not body_el:
-        return ""
-    return body_el.get_text(separator="\n", strip=True)
-
-
 def fetch_post_detail(url: str, session: requests.Session) -> tuple[str, str]:
     """Returns (body_text, date_str) for a post.  date_str is in 'YYYY.MM.DD' format
     or empty string if not found.

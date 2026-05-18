@@ -104,23 +104,6 @@ def test_fetch_board_page_handles_missing_likes():
     assert posts[0]["likes"] == 0
 
 
-def test_fetch_post_content_returns_body_text():
-    with patch("scraper.fetcher.time.sleep"):
-        from scraper.fetcher import fetch_post_content
-        session = _make_mock_session(POST_HTML)
-        body = fetch_post_content("https://phdkim.net/board/free/27703", session)
-    assert len(body) > 0
-    assert "연구 경험" in body
-
-
-def test_fetch_post_content_returns_empty_for_missing_body():
-    with patch("scraper.fetcher.time.sleep"):
-        from scraper.fetcher import fetch_post_content
-        session = _make_mock_session("<html><body><p>no content area</p></body></html>")
-        body = fetch_post_content("https://phdkim.net/board/free/1", session)
-    assert body == ""
-
-
 def test_fetch_post_detail_returns_body_and_date():
     with patch("scraper.fetcher.time.sleep"):
         from scraper.fetcher import fetch_post_detail
