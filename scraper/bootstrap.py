@@ -18,6 +18,8 @@ _START_DATE = date(2024, 1, 1)
 
 def _parse_date(date_str: str) -> date | None:
     """Parse common Korean forum date formats. Returns None if unparseable."""
+    if not date_str:
+        return None
     for fmt in ("%Y.%m.%d", "%Y-%m-%d", "%y.%m.%d", "%Y/%m/%d"):
         try:
             return datetime.strptime(date_str.strip(), fmt).date()
