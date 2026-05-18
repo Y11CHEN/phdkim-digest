@@ -1,11 +1,11 @@
 import datetime
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 
 
 def test_scraped_at_is_set_on_new_posts():
     from scraper.scrape import run
 
-    today = datetime.date.today().isoformat()
+    fixed_today = datetime.date(2026, 5, 18)
     saved = []
     mock_board_posts = [
         {"id": "99", "url": "http://phdkim.net/99", "title_ko": "테스트", "likes": 60}
@@ -18,8 +18,10 @@ def test_scraped_at_is_set_on_new_posts():
          patch("scraper.scrape.translate_text", return_value="translated"), \
          patch("scraper.scrape.save_posts", side_effect=lambda posts: saved.extend(posts)), \
          patch("scraper.scrape.write_html"), \
-         patch("scraper.scrape.requests"):
+         patch("scraper.scrape.requests"), \
+         patch("scraper.scrape._date") as mock_date:
+        mock_date.today.return_value = fixed_today
         run("fake_key")
 
     assert len(saved) == 1
-    assert saved[0]["scraped_at"] == today
+    assert saved[0]["scraped_at"] == fixed_today.isoformat()
