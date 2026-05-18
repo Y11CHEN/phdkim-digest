@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 
 _BASE_URL = "https://phdkim.net"
 _BOARD_URL = f"{_BASE_URL}/board"
+_BEST_BOARD_URL = f"{_BASE_URL}/board/best/list"
 _HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -54,6 +55,53 @@ def fetch_board_page(page_num: int, session: requests.Session) -> list[dict]:
         title_ko = title_el.get_text(strip=True) if title_el else link.get_text(strip=True)
 
         likes_el = row.select_one("p.react span.text")
+        try:
+            likes = int(likes_el.get_text(strip=True).replace(",", ""))
+        except (AttributeError, ValueError):
+            likes = 0
+
+        posts.append({
+            "id": post_id,
+            "url": post_url,
+            "title_ko": title_ko,
+            "likes": likes,
+            "date": "",
+        })
+
+    return posts
+
+
+def fetch_best_board_page(page_num: int, session: requests.Session) -> list[dict]:
+    """Returns posts from /board/best/list/{page_num}.
+
+    The best board uses different selectors from the main board:
+    a.item-title for titles and p.reacted for likes. IDs are prefixed
+    with 'best_' to avoid collisions with main-board IDs.
+    Returns empty list when page has no posts (past the last page).
+    """
+    url = f"{_BEST_BOARD_URL}/{page_num}"
+    soup = _get(session, url)
+
+    posts = []
+    for row in soup.select("li.row"):
+        link = row.select_one("a.item-title")
+        if not link:
+            continue
+
+        href = link.get("href", "")
+        if not href or "/board/best/" not in href:
+            continue
+
+        clean_href = href.split("?")[0]
+        raw_id = clean_href.rstrip("/").split("/")[-1]
+        if not raw_id.isdigit():
+            continue
+
+        post_url = f"{_BASE_URL}{clean_href}"
+        post_id = f"best_{raw_id}"
+        title_ko = link.get_text(strip=True)
+
+        likes_el = row.select_one("p.reacted")
         try:
             likes = int(likes_el.get_text(strip=True).replace(",", ""))
         except (AttributeError, ValueError):

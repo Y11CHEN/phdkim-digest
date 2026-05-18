@@ -5,26 +5,45 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>phdkim.net 中文精选</title>
 <style>
+*{box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:820px;margin:0 auto;padding:20px 16px;background:#f0f2f5;color:#333}
-header{margin-bottom:24px}
+header{margin-bottom:20px}
 h1{margin:0 0 4px;font-size:22px}
-header p{color:#888;margin:0;font-size:13px}
-.post{background:#fff;border-radius:10px;padding:20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
-.post-title{font-size:17px;font-weight:600;margin:0 0 6px}
-.post-title a{color:#1a1a1a;text-decoration:none}
+.subtitle{color:#888;margin:0 0 14px;font-size:13px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{padding:6px 18px;border-radius:20px;border:1.5px solid #ddd;background:#fff;cursor:pointer;font-size:14px;color:#555}
+.tab:hover{border-color:#aaa}
+.tab.active{background:#222;color:#fff;border-color:#222}
+.post{background:#fff;border-radius:10px;padding:16px 20px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.post-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.post-title{font-size:16px;font-weight:600;flex:1;min-width:0;margin:0}
+.post-title a{color:#1a1a1a;text-decoration:none;word-break:break-word}
 .post-title a:hover{text-decoration:underline}
-.post-meta{color:#aaa;font-size:12px;margin-bottom:12px}
+.post-right{display:flex;align-items:center;gap:8px;flex-shrink:0;padding-top:2px}
+.post-meta{color:#aaa;font-size:12px;white-space:nowrap}
+.fav-btn{background:none;border:none;font-size:20px;cursor:pointer;padding:0;line-height:1;color:#ddd;transition:color .1s}
+.fav-btn:hover{color:#f5a623}
+.fav-btn.active{color:#f5a623}
+.post-body{margin-top:12px}
 .post-body p{margin:0;line-height:1.75;white-space:pre-wrap;color:#444}
 details{margin-top:8px}
 details summary{cursor:pointer;color:#888;font-size:13px;user-select:none}
+body[data-view="toc"] .post-header{cursor:pointer}
+body[data-view="toc"] .post.expanded{box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.fav-empty{text-align:center;padding:60px 20px;color:#aaa;background:#fff;border-radius:10px;display:none}
 </style>
 </head>
-<body>
+<body data-view="toc">
 <header>
   <h1>phdkim.net 中文精选</h1>
-  <p>最后更新：2026-05-18 19:50 UTC &nbsp;|&nbsp; 共 9 篇</p>
+  <p class="subtitle">最后更新：2026-05-18 20:36 UTC &nbsp;|&nbsp; 共 9 篇</p>
+  <div class="tabs">
+    <button class="tab active" id="tab-toc" onclick="switchView('toc')">目录</button>
+    <button class="tab" id="tab-full" onclick="switchView('full')">全文</button>
+    <button class="tab" id="tab-fav" onclick="switchView('fav')">收藏<span id="fav-badge"></span></button>
+  </div>
 </header>
-<div class="post"><div class="post-title"><a href="https://phdkim.net/board/free/28190?from=home_hot_all" target="_blank">&lt;如何进入研究生院</a></div><div class="post-meta">👍 1303 &nbsp;|&nbsp; 2022.03.08</div><div class="post-body"><p>&quot;研究生院不是人们生活的地方&quot;
+<div class="post" data-id="28190"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/28190?from=home_hot_all" target="_blank" onclick="event.stopPropagation()">&lt;如何进入研究生院</a></div><div class="post-right"><span class="post-meta">👍 1303 &nbsp;|&nbsp; 2022.03.08</span><button class="fav-btn" data-id="28190" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>&quot;研究生院不是人们生活的地方&quot;
 &quot;那不是奴役吗？&quot;
 &quot;学校的夜间灯塔永不熄灭&quot;
 
@@ -372,7 +391,7 @@ details summary{cursor:pointer;color:#888;font-size:13px;user-select:none}
 我为我过去写的东西感到羞愧，我觉得我自命不凡，所以我要在这里加一个短逗号。
 就像研究生院对我做的那样、
 我希望这对你来说是一段美好的回忆和经历，就像研究生院对我一样。</p></details></div></div>
-<div class="post"><div class="post-title"><a href="https://phdkim.net/board/free/27703?from=home_hot_all" target="_blank">[研究与论文比较（供有抱负的科学家参考）</a></div><div class="post-meta">👍 383 &nbsp;|&nbsp; 2022.02.21</div><div class="post-body"><p>我毕业于其中一所大学的学士/硕士学位课程，并获得了博士学位。
+<div class="post" data-id="27703"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/27703?from=home_hot_all" target="_blank" onclick="event.stopPropagation()">[研究与论文比较（供有抱负的科学家参考）</a></div><div class="post-right"><span class="post-meta">👍 383 &nbsp;|&nbsp; 2022.02.21</span><button class="fav-btn" data-id="27703" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>我毕业于其中一所大学的学士/硕士学位课程，并获得了博士学位。
 我目前是我所在大学的一名 podac 研究员，这所大学是世界排名前 20 位的大学。
 我现在工作的实验室是那种每年都有一个 CNS 出来的实验室。
 我有一些在 20-30 多种 IF 期刊上投稿、审稿和发表论文的经验、
@@ -409,7 +428,7 @@ details summary{cursor:pointer;color:#888;font-size:13px;user-select:none}
 如果很不幸，教授不是这样的人，那么研究人员自己就应该专注研究，拥有这样的视野和洞察力、
 我想，当你完成博士课程时，你一定会发现自己是一名科学家，而不是一名科学技术人员。
 祝您一切顺利~~~!!!!</p></details></div></div>
-<div class="post"><div class="post-title"><a href="https://phdkim.net/board/free/32566?from=home_weekly" target="_blank">我在实验室里很开心...</a></div><div class="post-meta">👍 294 &nbsp;|&nbsp; 2022.07.25</div><div class="post-body"><p>我现在是一年级博士生，在实验室里我很开心。
+<div class="post" data-id="32566"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/32566?from=home_weekly" target="_blank" onclick="event.stopPropagation()">我在实验室里很开心...</a></div><div class="post-right"><span class="post-meta">👍 294 &nbsp;|&nbsp; 2022.07.25</span><button class="fav-btn" data-id="32566" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>我现在是一年级博士生，在实验室里我很开心。
 我本科毕业后就一直在这里，所以我在这个实验室已经四年了，一直都是这样。
 首先，钱很好赚。
 我有很多劳务费，学费由学校奖学金支付。
@@ -440,7 +459,7 @@ details summary{cursor:pointer;color:#888;font-size:13px;user-select:none}
 再次完成工作的感觉很好，所以我在睡觉前写了一点东西
 我真的很高兴，也很庆幸自己很好地选择了实验室和研究生院。
 我希望能继续这样下去</p></details></div></div>
-<div class="post"><div class="post-title"><a href="https://phdkim.net/board/free/44519?from=home_weekly" target="_blank">我们的引用次数终于超过了 1000...</a></div><div class="post-meta">👍 254 &nbsp;|&nbsp; 2023.07.02</div><div class="post-body"><p>我读硕士 2 年，读博士 4 年。
+<div class="post" data-id="44519"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/44519?from=home_weekly" target="_blank" onclick="event.stopPropagation()">我们的引用次数终于超过了 1000...</a></div><div class="post-right"><span class="post-meta">👍 254 &nbsp;|&nbsp; 2023.07.02</span><button class="fav-btn" data-id="44519" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>我读硕士 2 年，读博士 4 年。
 我在利用匿名的力量吹牛。我终于获得了超过 1000 次的引用!!!! 呜呼！！我的研究领域是人工智能/ML。
 当然，有很多人比我更优秀，我也知道引用次数并不能代表我的能力，但对我来说，这就像是对我一直以来坚持不懈的奖励。
 在过去的五年里，我一直在不停地工作。现在我知道自己的优势在哪里了：我并不比别人聪明，但我绝对比别人勤奋和坚持。正如我最喜欢的一位本科教授所说：&quot;如果你很笨，至少你有长时间学习的耐力&quot;。
@@ -448,7 +467,7 @@ details summary{cursor:pointer;color:#888;font-size:13px;user-select:none}
 干杯
 + 我以为你们都会说我吹牛，但还是非常感谢你们的支持 :)我会更加努力的。
 + 我毕业了！我在美国一家大型科技公司担任研究科学家。</p></div></div>
-<div class="post"><div class="post-title"><a href="https://phdkim.net/board/free/27949?from=home_weekly" target="_blank">博士生和刚毕业博士的研究计划书写作技巧</a></div><div class="post-meta">👍 248 &nbsp;|&nbsp; 2022.03.01</div><div class="post-body"><p>过去，资助金主要颁发给首席研究员、
+<div class="post" data-id="27949"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/27949?from=home_weekly" target="_blank" onclick="event.stopPropagation()">博士生和刚毕业博士的研究计划书写作技巧</a></div><div class="post-right"><span class="post-meta">👍 248 &nbsp;|&nbsp; 2022.03.01</span><button class="fav-btn" data-id="27949" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>过去，资助金主要颁发给首席研究员、
 近年来，许多补助金也颁发给了博士生和刚毕业的博士（以研究基金补助金为基础）。
 例如，即将设立的博士生研究补助金和创新挑战研究、
 以及上周公布的世宗科学奖学金和博士后培训。
@@ -582,7 +601,7 @@ details summary{cursor:pointer;color:#888;font-size:13px;user-select:none}
 希望这篇文章对您有所帮助
 也希望你们能在良好的环境中开展研究。
 谢谢</p></details></div></div>
-<div class="post"><div class="post-title"><a href="https://phdkim.net/board/free/41505?from=home_weekly" target="_blank">对于希望撰写第一作者论文的低年级本科生来说</a></div><div class="post-meta">👍 236 &nbsp;|&nbsp; 2023.04.19</div><div class="post-body"><p>我是SKYPK的一名本科生，我的共同第一作者论文今天被录用了!!!!，这是我在实验室3年没做过的课题，从方法到分析到数据到稿件再到修改，我已经做了2年！期刊IF不高，但它是在该领域有传统的期刊上。
+<div class="post" data-id="41505"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/41505?from=home_weekly" target="_blank" onclick="event.stopPropagation()">对于希望撰写第一作者论文的低年级本科生来说</a></div><div class="post-right"><span class="post-meta">👍 236 &nbsp;|&nbsp; 2023.04.19</span><button class="fav-btn" data-id="41505" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>我是SKYPK的一名本科生，我的共同第一作者论文今天被录用了!!!!，这是我在实验室3年没做过的课题，从方法到分析到数据到稿件再到修改，我已经做了2年！期刊IF不高，但它是在该领域有传统的期刊上。
 不管出于什么原因，我都要写几句话，送给那些想尝试发表第一作者论文的本科生。
 1.大量的时间可以解决大量的问题
 根据我周围的所见所闻，一般人都是在大三暑假进入实验室的。如果你要作为第一作者写论文，就不应该这样做。你的老师现在对科研一无所知。如果你在大三暑假进入实验室，那么当你经历了一个暑假加两个学期的摸爬滚打后，你已经进入大四了，那时你已经在考虑下一步的职业发展，研究自然就退居其次了。
@@ -595,7 +614,7 @@ details summary{cursor:pointer;color:#888;font-size:13px;user-select:none}
 积极与教授们会面是理所当然的：把他们想象成带领士兵打仗的将军，而你则是为他们提供补给和军队的皇帝。你有责任向他们介绍你已经征服的地方，以及你计划如何征服下一个高地，并将你的研究带向胜利，并获得他们的反馈。这是因为你所获得的所有资源都由你的教授决定。
 4.研究是一场持久战。
 拓展人类知识视野的研究需要大量的心血和努力，而属于罪犯的大脑需要很长一段时间才能到达知识视野的尽头，拓展知识视野。 所以你需要先进入实验室，迅速开始研究。我们的社会很容易说 &quot;谁站在终点谁就赢了&quot;，但要站在终点却很难，因为担心自己付出的大量努力可能会白费。 这就是为什么研究如此难得和宝贵。</p></details></div></div>
-<div class="post"><div class="post-title"><a href="https://phdkim.net/board/free/61211?from=home_weekly" target="_blank">关于（抑郁）失败</a></div><div class="post-meta">👍 188 &nbsp;|&nbsp; 2024.08.24</div><div class="post-body"><p>我失败了
+<div class="post" data-id="61211"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/61211?from=home_weekly" target="_blank" onclick="event.stopPropagation()">关于（抑郁）失败</a></div><div class="post-right"><span class="post-meta">👍 188 &nbsp;|&nbsp; 2024.08.24</span><button class="fav-btn" data-id="61211" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>我失败了
 或许我已经习惯了失败，忘记了如何重新站起来。
 我的学制比一般人长得多，在同学甚至学弟学妹们陆续完成论文的时候，我却失败了、失败了、失败了，没能完成一部作品。
 刚进校时对科研充满热情的梦想缩水了，每天早上和周末以毕业为目标的奔波又失败了，我没有信心站起来。
@@ -606,7 +625,7 @@ details summary{cursor:pointer;color:#888;font-size:13px;user-select:none}
 过去的一切恍如昨日，重来的一切告诉我需要重新站起来，这让我痛苦不堪。我知道我别无选择。你必须再来一次，你必须坚持下去。我需要从自己的痛苦色情中解脱出来，相信这只是生活，只是时机不</p><details><summary>继续阅读...</summary><p>对，只是我运气不好。
 但今天我没有力气了。我只是想念我的父亲，他是一个不成熟的父亲，什么都不教我，也不尊重我。
 我不能在任何地方谈论它。我犹豫不决，祈求匿名的力量。我感觉很糟糕，但在我的脑海里，我希望我不是唯一一个在挣扎的人。什么是正常的生活？我不想要什么大事，我只想过正常的生活...</p></details></div></div>
-<div class="post"><div class="post-title"><a href="https://phdkim.net/board/free/39301?from=home_weekly" target="_blank">排名最低的高中 -&gt; 都市工程 -&gt; SKP 硕士 -&gt; 美国工作</a></div><div class="post-meta">👍 173 &nbsp;|&nbsp; 2023.02.23</div><div class="post-body"><p>这是我第一次在金医生的博客上发表文章。
+<div class="post" data-id="39301"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/39301?from=home_weekly" target="_blank" onclick="event.stopPropagation()">排名最低的高中 -&gt; 都市工程 -&gt; SKP 硕士 -&gt; 美国工作</a></div><div class="post-right"><span class="post-meta">👍 173 &nbsp;|&nbsp; 2023.02.23</span><button class="fav-btn" data-id="39301" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>这是我第一次在金医生的博客上发表文章。
 金博士网上有很多条件不错的人，所以我写了这篇文章，因为我很遗憾地看到，即使你年纪轻轻，就已经为你现在的条件比不上别人而感到沮丧。
 正如标题所说，我是一个高中排名垫底（模拟考试水原最后一名）-&gt;首都技术学院（首尔X）-&gt;SKP硕士-&gt;目前在美国担任工程师的人，我想我应该分享一下我的故事。
 我想传达这样一个信息：这并不是不可能的，也有这样的人，其他人不应该觉得为时已晚。
@@ -622,7 +641,7 @@ details summary{cursor:pointer;color:#888;font-size:13px;user-select:none}
 - 在研究室里，你不一定要成为优秀的本科生，入学成绩也不能决定你的毕业。
 - 让我们一起努力吧！
 谢谢大家</p></details></div></div>
-<div class="post"><div class="post-title"><a href="https://phdkim.net/board/free/29028?from=home_weekly" target="_blank">我的顾问</a></div><div class="post-meta">👍 171 &nbsp;|&nbsp; 2022.04.02</div><div class="post-body"><p>我在实验室工作了 7 年，我的教授指导了我 7 年。
+<div class="post" data-id="29028"><div class="post-header" onclick="toggleAccordion(this.closest('.post'))"><div class="post-title"><a href="https://phdkim.net/board/free/29028?from=home_weekly" target="_blank" onclick="event.stopPropagation()">我的顾问</a></div><div class="post-right"><span class="post-meta">👍 171 &nbsp;|&nbsp; 2022.04.02</span><button class="fav-btn" data-id="29028" onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button></div></div><div class="post-body"><p>我在实验室工作了 7 年，我的教授指导了我 7 年。
 1.他致力于研究和业务。
 我们实验室从事（非主流）生物免疫/病原微生物学研究。每年和学生一起承担 10 多个项目，没有播客（我们团队平均每年超过 1 亿）。当然，我们的研究经费和学生劳务费都是通过企业提供的，我们的学生也是从我们的研究中毕业的。你有创造良性循环的诀窍。
 在最后展示或提交报告的那天，我们几乎要死要活，但结束后真的很有成就感，因为他直到最后一刻都在全力以赴。
@@ -640,5 +659,64 @@ details summary{cursor:pointer;color:#888;font-size:13px;user-select:none}
 7. 备课
 每年都要花一整天时间备课。尤其是研究生课程，我准备了很多好的论文，一起研究，获得了很多信息。这不正是上大学的目的吗？
 从某种程度上说，这些都是教授应该做的显而易见的事情，但我从未见过像我的教授那样优秀的人，所以我把它们写下来。</p></details></div></div>
+<div class="fav-empty" id="fav-empty">还没有收藏 &nbsp;·&nbsp; 点击帖子右侧的 ☆ 来收藏</div>
+<script>
+function getFavs(){try{return new Set(JSON.parse(localStorage.getItem('phdkim_favs')||'[]'))}catch(e){return new Set()}}
+function saveFavs(f){localStorage.setItem('phdkim_favs',JSON.stringify([...f]))}
+function switchView(v){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+v).classList.add('active');
+  document.body.dataset.view=v;
+  sessionStorage.setItem('phdkim_view',v);
+  applyView();
+}
+function applyView(){
+  var v=document.body.dataset.view,favs=getFavs(),n=0;
+  document.querySelectorAll('.post').forEach(function(post){
+    var id=post.dataset.id,body=post.querySelector('.post-body');
+    if(v==='fav'){
+      var show=favs.has(id);
+      post.style.display=show?'':'none';
+      if(show){body.style.display='';n++}
+    }else{
+      post.style.display='';
+      body.style.display=(v==='full'||post.classList.contains('expanded'))?'':'none';
+    }
+  });
+  var emp=document.getElementById('fav-empty');
+  if(emp)emp.style.display=(v==='fav'&&n===0)?'':'none';
+}
+function toggleAccordion(post){
+  if(document.body.dataset.view!=='toc')return;
+  var body=post.querySelector('.post-body');
+  var exp=post.classList.toggle('expanded');
+  body.style.display=exp?'':'none';
+}
+function toggleFav(btn){
+  var id=btn.dataset.id,favs=getFavs();
+  if(favs.has(id))favs.delete(id);else favs.add(id);
+  saveFavs(favs);
+  updateFavUI();
+  if(document.body.dataset.view==='fav')applyView();
+}
+function updateFavUI(){
+  var favs=getFavs();
+  document.querySelectorAll('.fav-btn').forEach(function(btn){
+    var on=favs.has(btn.dataset.id);
+    btn.textContent=on?'★':'☆';
+    btn.classList.toggle('active',on);
+  });
+  var c=favs.size;
+  document.getElementById('fav-badge').textContent=c?' ('+c+')':'';
+}
+window.addEventListener('DOMContentLoaded',function(){
+  var v=sessionStorage.getItem('phdkim_view')||'toc';
+  document.body.dataset.view=v;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+v).classList.add('active');
+  applyView();
+  updateFavUI();
+});
+</script>
 </body>
 </html>

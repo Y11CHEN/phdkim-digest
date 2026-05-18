@@ -34,11 +34,18 @@ export DEEPL_API_KEY="你的Key"
 python scraper/scrape.py
 ```
 
-**初始化（一次性，抓取历史高赞帖）：**
+**初始化（一次性，抓取热门帖快照中赞数 ≥ 150 的帖子）：**
 
 ```bash
 export DEEPL_API_KEY="你的Key"
 python scraper/bootstrap.py
+```
+
+**批量导入（一次性，扫描精选板块所有页面，抓取赞数 ≥ 100 的历史帖）：**
+
+```bash
+export DEEPL_API_KEY="你的Key"
+python scraper/bulk_import.py
 ```
 
 ---
