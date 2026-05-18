@@ -33,7 +33,7 @@ def _group_posts(posts: list) -> list[tuple[str, list]]:
 def _render_card(p: dict) -> str:
     post_id = _html.escape(str(p["id"]))
     title = _html.escape(p["title_zh"])
-    url = p["url"]
+    url = _html.escape(p["url"])
     likes = p.get("likes", 0)
     date = _html.escape(p["date"])
     body = _html.escape(p.get("body_zh", ""))

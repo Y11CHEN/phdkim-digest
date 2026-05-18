@@ -121,3 +121,34 @@ def test_within_group_sorted_by_likes():
     ]
     html = generate_html(same_batch)
     assert html.index("高赞同批") < html.index("低赞同批")
+
+
+def test_group_posts_structure():
+    from scraper.html_gen import _group_posts
+
+    posts = [
+        {"id": "1", "title_zh": "a", "likes": 100, "date": "2026-05-18",
+         "url": "http://x.com/1", "body_zh": "x", "scraped_at": "2026-05-18"},
+        {"id": "2", "title_zh": "b", "likes": 50, "date": "2026-05-18",
+         "url": "http://x.com/2", "body_zh": "y", "scraped_at": "2026-05-18"},
+        {"id": "3", "title_zh": "c", "likes": 200, "date": "2025-01-01",
+         "url": "http://x.com/3", "body_zh": "z"},
+    ]
+    groups = _group_posts(posts)
+
+    # 2 groups: one weekly, one historical
+    assert len(groups) == 2
+
+    # Weekly group is first, historical last
+    weekly_label, weekly_posts = groups[0]
+    hist_label, hist_posts = groups[1]
+
+    assert "2026-05-18" in weekly_label
+    assert "历史精选" in hist_label
+
+    # Weekly group sorted by likes descending
+    assert weekly_posts[0]["id"] == "1"  # 100 likes
+    assert weekly_posts[1]["id"] == "2"  # 50 likes
+
+    # Historical group contains the no-scraped_at post
+    assert hist_posts[0]["id"] == "3"
