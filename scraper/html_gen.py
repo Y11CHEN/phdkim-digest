@@ -1,3 +1,4 @@
+from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 import html as _html
@@ -6,48 +7,76 @@ _DEFAULT_HTML_PATH = Path(__file__).parent.parent / "docs" / "index.html"
 _BODY_COLLAPSE_THRESHOLD = 500
 
 
-def generate_html(posts: list) -> str:
-    posts_sorted = sorted(posts, key=lambda p: p.get("likes", 0), reverse=True)
-    updated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    total = len(posts_sorted)
-
-    cards = []
-    for p in posts_sorted:
-        post_id = _html.escape(str(p["id"]))
-        title = _html.escape(p["title_zh"])
-        url = p["url"]
-        likes = p.get("likes", 0)
-        date = _html.escape(p["date"])
-        body = _html.escape(p.get("body_zh", ""))
-
-        if len(body) > _BODY_COLLAPSE_THRESHOLD:
-            preview = body[:_BODY_COLLAPSE_THRESHOLD]
-            rest = body[_BODY_COLLAPSE_THRESHOLD:]
-            body_html = (
-                f'<p>{preview}</p>'
-                f'<details><summary>继续阅读...</summary>'
-                f'<p>{rest}</p></details>'
-            )
+def _group_posts(posts: list) -> list[tuple[str, list]]:
+    """Return [(group_label, posts_in_group), ...] — weekly groups newest-first, historical last."""
+    weekly: dict[str, list] = defaultdict(list)
+    historical = []
+    for p in posts:
+        sat = p.get("scraped_at", "")
+        if sat:
+            weekly[sat].append(p)
         else:
-            body_html = f'<p>{body}</p>'
+            historical.append(p)
 
-        cards.append(
-            f'<div class="post" data-id="{post_id}">'
-            f'<div class="post-header" onclick="toggleAccordion(this.closest(\'.post\'))">'
-            f'<div class="post-title">'
-            f'<a href="{url}" target="_blank" onclick="event.stopPropagation()">{title}</a>'
-            f'</div>'
-            f'<div class="post-right">'
-            f'<span class="post-meta">👍 {likes} &nbsp;|&nbsp; {date}</span>'
-            f'<button class="fav-btn" data-id="{post_id}" '
-            f'onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button>'
-            f'</div>'
-            f'</div>'
-            f'<div class="post-body">{body_html}</div>'
-            f'</div>'
+    groups = []
+    for date_str in sorted(weekly.keys(), reverse=True):
+        group_posts = sorted(weekly[date_str], key=lambda p: p.get("likes", 0), reverse=True)
+        groups.append((f"{date_str} · {len(group_posts)} 篇", group_posts))
+
+    if historical:
+        historical_sorted = sorted(historical, key=lambda p: p.get("likes", 0), reverse=True)
+        groups.append((f"历史精选（初始导入）· {len(historical_sorted)} 篇", historical_sorted))
+
+    return groups
+
+
+def _render_card(p: dict) -> str:
+    post_id = _html.escape(str(p["id"]))
+    title = _html.escape(p["title_zh"])
+    url = p["url"]
+    likes = p.get("likes", 0)
+    date = _html.escape(p["date"])
+    body = _html.escape(p.get("body_zh", ""))
+
+    if len(body) > _BODY_COLLAPSE_THRESHOLD:
+        preview = body[:_BODY_COLLAPSE_THRESHOLD]
+        rest = body[_BODY_COLLAPSE_THRESHOLD:]
+        body_html = (
+            f'<p>{preview}</p>'
+            f'<details><summary>继续阅读...</summary>'
+            f'<p>{rest}</p></details>'
         )
+    else:
+        body_html = f'<p>{body}</p>'
 
-    posts_html = "\n".join(cards)
+    return (
+        f'<div class="post" data-id="{post_id}">'
+        f'<div class="post-header" onclick="toggleAccordion(this.closest(\'.post\'))">'
+        f'<div class="post-title">'
+        f'<a href="{url}" target="_blank" onclick="event.stopPropagation()">{title}</a>'
+        f'</div>'
+        f'<div class="post-right">'
+        f'<span class="post-meta">👍 {likes} &nbsp;|&nbsp; {date}</span>'
+        f'<button class="fav-btn" data-id="{post_id}" '
+        f'onclick="event.stopPropagation();toggleFav(this)" title="收藏">☆</button>'
+        f'</div>'
+        f'</div>'
+        f'<div class="post-body">{body_html}</div>'
+        f'</div>'
+    )
+
+
+def generate_html(posts: list) -> str:
+    updated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    total = len(posts)
+
+    sections = []
+    for group_label, group_posts in _group_posts(posts):
+        header = f'<div class="group-header">{_html.escape(group_label)}</div>'
+        cards = "\n".join(_render_card(p) for p in group_posts)
+        sections.append(header + "\n" + cards)
+
+    posts_html = "\n".join(sections)
 
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
@@ -65,6 +94,7 @@ h1{{margin:0 0 4px;font-size:22px}}
 .tab{{padding:6px 18px;border-radius:20px;border:1.5px solid #ddd;background:#fff;cursor:pointer;font-size:14px;color:#555}}
 .tab:hover{{border-color:#aaa}}
 .tab.active{{background:#222;color:#fff;border-color:#222}}
+.group-header{{font-size:13px;color:#888;font-weight:600;margin:20px 0 8px;padding-left:6px;border-left:3px solid #d0d0d0}}
 .post{{background:#fff;border-radius:10px;padding:16px 20px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.08)}}
 .post-header{{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}}
 .post-title{{font-size:16px;font-weight:600;flex:1;min-width:0;margin:0}}
