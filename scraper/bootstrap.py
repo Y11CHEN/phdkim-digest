@@ -1,7 +1,6 @@
 import os
 import sys
 from pathlib import Path
-from datetime import date, datetime
 import requests
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -13,19 +12,6 @@ from scraper.html_gen import write_html
 
 _HTML_PATH = Path(__file__).parent.parent / "docs" / "index.html"
 _LIKES_THRESHOLD = 150
-_START_DATE = date(2024, 1, 1)
-
-
-def _parse_date(date_str: str) -> date | None:
-    """Parse common Korean forum date formats. Returns None if unparseable."""
-    if not date_str:
-        return None
-    for fmt in ("%Y.%m.%d", "%Y-%m-%d", "%y.%m.%d", "%Y/%m/%d"):
-        try:
-            return datetime.strptime(date_str.strip(), fmt).date()
-        except ValueError:
-            continue
-    return None
 
 
 def run(api_key: str) -> int:
@@ -48,12 +34,6 @@ def run(api_key: str) -> int:
 
         print(f"  Fetching detail: {p['title_ko'][:60]} (👍 {p['likes']})")
         body_ko, date_str = fetch_post_detail(p["url"], session)
-        post_date = _parse_date(date_str)
-
-        if post_date and post_date < _START_DATE:
-            print(f"    Skipping: date {date_str} is before {_START_DATE}")
-            continue
-
         p["date"] = date_str
         p["title_zh"] = translate_text(p["title_ko"], api_key)
         p["body_ko"] = body_ko
