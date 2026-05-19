@@ -54,8 +54,8 @@ def run(api_key: str) -> int:
 
 
 if __name__ == "__main__":
-    api_key = os.environ.get("DEEPL_API_KEY")
+    api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
-        print("Error: DEEPL_API_KEY environment variable not set.")
+        print("Error: GEMINI_API_KEY environment variable not set.")
         sys.exit(1)
     run(api_key)
