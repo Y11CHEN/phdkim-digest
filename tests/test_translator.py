@@ -7,11 +7,14 @@ def test_translate_text_calls_gemini_with_correct_args():
     mock_model = MagicMock()
     mock_model.generate_content.return_value = mock_response
 
-    with patch("scraper.translator.genai.GenerativeModel", return_value=mock_model):
-        from scraper.translator import translate_text
+    with patch("scraper.translator.genai.configure") as mock_configure, \
+         patch("scraper.translator.genai.GenerativeModel", return_value=mock_model) as mock_model_cls:
+        from scraper.translator import translate_text, _SYSTEM
         result = translate_text("한국어 텍스트", api_key="fake-key")
 
     assert result == "中文翻译结果"
+    mock_configure.assert_called_once_with(api_key="fake-key")
+    mock_model_cls.assert_called_once_with("gemini-2.5-flash", system_instruction=_SYSTEM)
     mock_model.generate_content.assert_called_once_with("한국어 텍스트")
 
 

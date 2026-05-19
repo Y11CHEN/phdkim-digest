@@ -8,7 +8,7 @@ _SYSTEM = (
 )
 
 
-def translate_text(text: str, api_key: str, source: str = "KO", target: str = "ZH") -> str:
+def translate_text(text: str, api_key: str) -> str:
     if not text or not text.strip():
         return ""
     genai.configure(api_key=api_key)
