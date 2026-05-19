@@ -1,20 +1,18 @@
 from unittest.mock import MagicMock, patch
 
 
-def test_translate_text_calls_deepl_with_correct_args():
-    mock_result = MagicMock()
-    mock_result.text = "中文翻译结果"
-    mock_translator_instance = MagicMock()
-    mock_translator_instance.translate_text.return_value = mock_result
+def test_translate_text_calls_gemini_with_correct_args():
+    mock_response = MagicMock()
+    mock_response.text = "中文翻译结果"
+    mock_model = MagicMock()
+    mock_model.generate_content.return_value = mock_response
 
-    with patch("scraper.translator.deepl.Translator", return_value=mock_translator_instance):
+    with patch("scraper.translator.genai.GenerativeModel", return_value=mock_model):
         from scraper.translator import translate_text
         result = translate_text("한국어 텍스트", api_key="fake-key")
 
     assert result == "中文翻译结果"
-    mock_translator_instance.translate_text.assert_called_once_with(
-        "한국어 텍스트", source_lang="KO", target_lang="ZH"
-    )
+    mock_model.generate_content.assert_called_once_with("한국어 텍스트")
 
 
 def test_translate_text_returns_empty_string_for_empty_input():
