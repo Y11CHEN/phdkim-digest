@@ -1,4 +1,5 @@
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 
 _SYSTEM = (
     "你是专业翻译，专门翻译韩国博士申请社区（phdkim.net）的帖子。"
@@ -11,6 +12,10 @@ _SYSTEM = (
 def translate_text(text: str, api_key: str) -> str:
     if not text or not text.strip():
         return ""
-    genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-2.5-flash", system_instruction=_SYSTEM)
-    return model.generate_content(text).text
+    client = genai.Client(api_key=api_key)
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=text,
+        config=types.GenerateContentConfig(system_instruction=_SYSTEM),
+    )
+    return response.text
