@@ -11,9 +11,11 @@
 ## 工作原理
 
 - **每周日 UTC 00:00** 自动运行，抓取点赞数 > 50 的新帖子
-- 通过 Gemini API 将韩语标题和正文翻译成中文（含博士申请领域专业术语优化）
+- 通过 Gemini API（gemini-2.5-flash）将韩语标题和正文翻译成中文（含博士申请领域专业术语优化）
 - 去重：已收录的帖子不会重复出现
 - 生成静态 HTML，通过 GitHub Pages 发布
+- **限速保护**：每次 API 调用间隔 13 秒，符合免费版 5 次/分钟的限制
+- **容错处理**：若当周新帖超出每日配额（20 次/天），超出部分跳过而非崩溃，下次运行时重试
 
 数据存储在 `data/posts.json`，网站文件在 `docs/index.html`。
 
@@ -48,12 +50,14 @@ export GEMINI_API_KEY="你的Key"
 python scraper/bulk_import.py
 ```
 
-**重新翻译所有现有帖子（一次性）：**
+**重新翻译所有现有帖子（断点续跑，可多次运行）：**
 
 ```bash
 export GEMINI_API_KEY="你的Key"
 python scraper/retranslate.py
 ```
+
+> 每篇翻译成功后立即保存进度（`retranslated: true` 标记），中断后重新运行会自动跳过已完成的帖子。免费版每日限额 20 次，约每天处理 10 篇，多天运行直至全部完成。
 
 ---
 

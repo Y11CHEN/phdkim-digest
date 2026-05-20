@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 from datetime import date as _date
 from pathlib import Path
 import requests
@@ -39,9 +40,15 @@ def run(api_key: str) -> int:
         body_ko, date = fetch_post_detail(p["url"], session)
         p["date"] = date
         p["scraped_at"] = _date.today().isoformat()
-        p["title_zh"] = translate_text(p["title_ko"], api_key)
         p["body_ko"] = body_ko
-        p["body_zh"] = translate_text(body_ko, api_key)
+        try:
+            p["title_zh"] = translate_text(p["title_ko"], api_key)
+            time.sleep(13)
+            p["body_zh"] = translate_text(body_ko, api_key)
+            time.sleep(13)
+        except Exception as e:
+            print(f"    Translation failed ({e}), skipping post.")
+            continue
         new_posts.append(p)
         seen_ids.add(p["id"])
 
