@@ -9,7 +9,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from scraper.storage import load_posts, save_posts, get_seen_ids
 from scraper.translator import translate_text
-from scraper.fetcher import fetch_board_page, fetch_post_detail
+from scraper.fetcher import fetch_best_board_page, fetch_post_detail
 from scraper.html_gen import write_html
 
 _HTML_PATH = Path(__file__).parent.parent / "docs" / "index.html"
@@ -24,11 +24,9 @@ def run(api_key: str) -> int:
 
     session = requests.Session()
 
-    # phdkim.net returns the same hot-posts snapshot regardless of page number.
-    # One fetch is all we need.
-    print("Fetching board...")
-    board_posts = fetch_board_page(1, session)
-    print(f"Found {len(board_posts)} posts on board.")
+    print("Fetching best board...")
+    board_posts = fetch_best_board_page(1, session)
+    print(f"Found {len(board_posts)} posts on best board.")
 
     for p in board_posts:
         if p["id"] in seen_ids:
