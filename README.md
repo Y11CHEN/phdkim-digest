@@ -10,7 +10,7 @@
 
 ## 工作原理
 
-- **每周日 UTC 00:00** 自动运行，抓取点赞数 > 50 的新帖子
+- **每周日 UTC 00:00** 自动运行，抓取点赞数 ≥ 20 的新帖子
 - 通过 Gemini API（gemini-2.5-flash）将韩语标题和正文翻译成中文（含博士申请领域专业术语优化）
 - 去重：已收录的帖子不会重复出现
 - 生成静态 HTML，通过 GitHub Pages 发布
@@ -43,21 +43,21 @@ export GEMINI_API_KEY="你的Key"
 python scraper/bootstrap.py
 ```
 
-**批量导入（一次性，扫描精选板块所有页面，抓取赞数 ≥ 100 的历史帖）：**
-
-```bash
-export GEMINI_API_KEY="你的Key"
-python scraper/bulk_import.py
-```
-
-**重新翻译所有现有帖子（断点续跑，可多次运行）：**
+**历史全量抓取（从平台创立至今，赞数 ≥ 100，断点续跑）：**
 
 ```bash
 export GEMINI_API_KEY="你的Key"
 python scraper/retranslate.py
 ```
 
-> 每篇翻译成功后立即保存进度（`retranslated: true` 标记），中断后重新运行会自动跳过已完成的帖子。免费版每日限额 20 次，约每天处理 10 篇，多天运行直至全部完成。
+> 扫描精选板块所有分页直到空页为止，每帖翻译完成后立即保存，中断后重新运行会自动跳过已入库的帖子。
+
+**批量导入备选（同上，每 5 页保存一次检查点）：**
+
+```bash
+export GEMINI_API_KEY="你的Key"
+python scraper/bulk_import.py
+```
 
 ---
 
