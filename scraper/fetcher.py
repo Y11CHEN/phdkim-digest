@@ -1,131 +1,81 @@
 import time
 import random
-import requests
 from bs4 import BeautifulSoup
+from scrapling import Fetcher, StealthyFetcher
 
 _BASE_URL = "https://phdkim.net"
-_BOARD_URL = f"{_BASE_URL}/board"
-_BEST_BOARD_URL = f"{_BASE_URL}/board/best/list"
-_HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/124.0.0.0 Safari/537.36"
-    )
-}
 
 
-def _get(session: requests.Session, url: str) -> BeautifulSoup:
-    resp = session.get(url, headers=_HEADERS, timeout=15)
-    resp.raise_for_status()
+def _fetch(url: str) -> BeautifulSoup | None:
+    """Fetch page with scrapling. Returns None on 404, raises on other errors."""
+    page = Fetcher.get(url, stealthy_headers=True)
     time.sleep(random.uniform(2, 5))
-    return BeautifulSoup(resp.text, "html.parser")
+    if page.status == 404:
+        return None
+    return BeautifulSoup(page.html_content, "html.parser")
 
 
-def fetch_board_page(page_num: int, session: requests.Session) -> list[dict]:
-    """Returns list of {id, url, title_ko, likes, date} from the board hot-posts feed.
+def _fetch_stealth(url: str) -> BeautifulSoup:
+    """JS-rendered fetch via headless browser (for pages requiring JavaScript)."""
+    page = StealthyFetcher.fetch(url, headless=True, network_idle=True)
+    return BeautifulSoup(page.html_content, "html.parser")
 
-    Note: phdkim.net does not expose a chronological paginated feed in its server-rendered
-    HTML.  The board homepage returns a curated 'hot posts' snapshot; page_num is accepted
-    for API compatibility but does not change the result set (the site ignores ?page=N).
-    The 'date' field is not present on listing rows and is returned as an empty string;
-    call fetch_post_detail() to obtain the date for a specific post.
+
+def _parse_item_title_row(row) -> dict | None:
+    """Parse a li.row that uses a.item-title. Returns None if not a valid post."""
+    link = row.select_one("a.item-title")
+    if not link:
+        return None
+    href = link.get("href", "").split("?")[0]
+    parts = [p for p in href.split("/") if p]
+    if len(parts) < 3 or not parts[-1].isdigit():
+        return None
+    board_type = parts[-2]          # 'best', 'free', etc.
+    post_id = f"{board_type}_{parts[-1]}"
+    title_ko = link.get_text(strip=True)
+    likes_el = row.select_one("p.reacted")
+    try:
+        likes = int(likes_el.get_text(strip=True).replace(",", ""))
+    except (AttributeError, ValueError):
+        likes = 0
+    return {
+        "id": post_id,
+        "url": f"{_BASE_URL}{href}",
+        "title_ko": title_ko,
+        "likes": likes,
+        "date": "",
+    }
+
+
+def fetch_paginated_board(board_path: str, page_num: int) -> list[dict]:
+    """Fetch one page of any paginated board. Returns [] at end (404 or empty).
+
+    board_path examples: 'board/best/list', 'board/list', 'board/free/list'
+    Post IDs are derived from URL path: board_type + '_' + numeric_id.
     """
-    url = f"{_BOARD_URL}?page={page_num}"
-    soup = _get(session, url)
-
+    soup = _fetch(f"{_BASE_URL}/{board_path}/{page_num}")
+    if soup is None:
+        return []
     posts = []
     for row in soup.select("li.row"):
-        link = row.select_one("a.link")
-        if not link:
-            continue
-
-        href = link.get("href", "")
-        if not href or "/board/" not in href:
-            continue
-
-        post_url = href if href.startswith("http") else f"{_BASE_URL}{href}"
-        # Strip query params to get canonical URL and extract ID
-        clean_href = href.split("?")[0]
-        post_id = clean_href.rstrip("/").split("/")[-1]
-        if not post_id.isdigit():
-            continue
-
-        title_el = link.select_one("span")
-        title_ko = title_el.get_text(strip=True) if title_el else link.get_text(strip=True)
-
-        likes_el = row.select_one("p.react span.text")
-        try:
-            likes = int(likes_el.get_text(strip=True).replace(",", ""))
-        except (AttributeError, ValueError):
-            likes = 0
-
-        posts.append({
-            "id": post_id,
-            "url": post_url,
-            "title_ko": title_ko,
-            "likes": likes,
-            "date": "",
-        })
-
+        post = _parse_item_title_row(row)
+        if post:
+            posts.append(post)
     return posts
 
 
-def fetch_best_board_page(page_num: int, session: requests.Session) -> list[dict]:
-    """Returns posts from /board/best/list/{page_num}.
+def fetch_best_board_page(page_num: int, session=None) -> list[dict]:
+    """Fetch one page from /board/best/list. (session param kept for compat, ignored)"""
+    return fetch_paginated_board("board/best/list", page_num)
 
-    The best board uses different selectors from the main board:
-    a.item-title for titles and p.reacted for likes. IDs are prefixed
-    with 'best_' to avoid collisions with main-board IDs.
-    Returns empty list when page has no posts (past the last page).
+
+def fetch_impact_board(session=None) -> list[dict]:
+    """Fetch all posts from /board/impact/list using full JS rendering.
+
+    Returns the complete hall-of-fame list (180+ posts back to 2019).
+    Uses StealthyFetcher so JavaScript-loaded posts are included.
     """
-    url = f"{_BEST_BOARD_URL}/{page_num}"
-    soup = _get(session, url)
-
-    posts = []
-    for row in soup.select("li.row"):
-        link = row.select_one("a.item-title")
-        if not link:
-            continue
-
-        href = link.get("href", "")
-        if not href or "/board/best/" not in href:
-            continue
-
-        clean_href = href.split("?")[0]
-        raw_id = clean_href.rstrip("/").split("/")[-1]
-        if not raw_id.isdigit():
-            continue
-
-        post_url = f"{_BASE_URL}{clean_href}"
-        post_id = f"best_{raw_id}"
-        title_ko = link.get_text(strip=True)
-
-        likes_el = row.select_one("p.reacted")
-        try:
-            likes = int(likes_el.get_text(strip=True).replace(",", ""))
-        except (AttributeError, ValueError):
-            likes = 0
-
-        posts.append({
-            "id": post_id,
-            "url": post_url,
-            "title_ko": title_ko,
-            "likes": likes,
-            "date": "",
-        })
-
-    return posts
-
-
-def fetch_impact_board(session: requests.Session) -> list[dict]:
-    """Returns all posts from /board/impact/list (single page, no pagination).
-
-    The impact board aggregates high-engagement posts from all sub-boards.
-    IDs are prefixed with the sub-board name (e.g. 'free_28190') to avoid
-    collision with best board IDs ('best_N').
-    """
-    soup = _get(session, f"{_BASE_URL}/board/impact/list")
+    soup = _fetch_stealth(f"{_BASE_URL}/board/impact/list")
     posts = []
     for row in soup.select("li.row"):
         link = row.select_one("a.link")
@@ -136,7 +86,6 @@ def fetch_impact_board(session: requests.Session) -> list[dict]:
         if len(parts) < 3 or not parts[-1].isdigit():
             continue
         board_type = parts[-2]
-        post_url = f"{_BASE_URL}{href}"
         post_id = f"{board_type}_{parts[-1]}"
         title_ko = link.get_text(strip=True)
         likes_el = row.select_one("p.react span.text")
@@ -146,7 +95,7 @@ def fetch_impact_board(session: requests.Session) -> list[dict]:
             likes = 0
         posts.append({
             "id": post_id,
-            "url": post_url,
+            "url": f"{_BASE_URL}{href}",
             "title_ko": title_ko,
             "likes": likes,
             "date": "",
@@ -154,16 +103,18 @@ def fetch_impact_board(session: requests.Session) -> list[dict]:
     return posts
 
 
-def fetch_post_detail(url: str, session: requests.Session) -> tuple[str, str]:
-    """Returns (body_text, date_str) for a post.  date_str is in 'YYYY.MM.DD' format
-    or empty string if not found.
-    """
-    soup = _get(session, url)
-
+def fetch_post_detail(url: str, session=None) -> tuple[str, str]:
+    """Returns (body_text, date_str). (session param kept for compat, ignored)"""
+    soup = _fetch(url)
+    if soup is None:
+        return "", ""
     body_el = soup.select_one("div.content-area")
     body = body_el.get_text(separator="\n", strip=True) if body_el else ""
-
     date_el = soup.select_one("p.date")
     date = date_el.get_text(strip=True) if date_el else ""
-
     return body, date
+
+
+def fetch_board_page(page_num: int, session=None) -> list[dict]:
+    """Deprecated wrapper — use fetch_paginated_board instead."""
+    return fetch_paginated_board("board/list", page_num)

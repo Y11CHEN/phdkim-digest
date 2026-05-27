@@ -3,3 +3,4 @@ requests>=2.31.0
 beautifulsoup4>=4.12.3
 google-genai>=1.0.0
 pytest>=8.1.0
+scrapling[fetchers]>=0.2.9

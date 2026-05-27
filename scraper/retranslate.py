@@ -1,8 +1,10 @@
-"""Historical full scrape of phdkim.net best board.
+"""Historical full scrape of phdkim.net — covers all major boards.
 
-Scans every page from newest to oldest, skips posts already in posts.json,
-fetches detail + translates for any post with likes >= threshold,
-and stops when it hits an empty page.
+Boards scraped (in order):
+  1. /board/best/list  — best board, paginated (already fully imported)
+  2. /board/list       — all sub-boards combined, paginated, back to platform founding
+  3. /board/impact/list — IF Hall of Fame, JS-rendered, 180+ all-time posts
+
 Saves after each post so progress is not lost if interrupted.
 Re-running is safe: already-imported IDs are skipped automatically.
 """
@@ -11,13 +13,12 @@ import sys
 import time
 from datetime import date as _date
 from pathlib import Path
-import requests
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from scraper.storage import load_posts, save_posts, get_seen_ids
 from scraper.translator import translate_text
-from scraper.fetcher import fetch_best_board_page, fetch_impact_board, fetch_post_detail
+from scraper.fetcher import fetch_best_board_page, fetch_paginated_board, fetch_impact_board, fetch_post_detail
 from scraper.html_gen import write_html
 
 _HTML_PATH = Path(__file__).parent.parent / "docs" / "index.html"
@@ -39,79 +40,73 @@ def _translate(text: str, api_key: str) -> str:
                 raise
 
 
-def run(api_key: str) -> None:
-    posts = load_posts()
-    seen_ids = get_seen_ids(posts)
-    added = 0
+def _process_post(p: dict, posts: list, seen_ids: set, api_key: str, added: int) -> int:
+    """Fetch detail, translate, save. Returns new added count."""
+    print(f"  [{added + 1}] {p['title_ko'][:55]} (👍 {p['likes']})")
+    try:
+        body_ko, date_str = fetch_post_detail(p["url"])
+        p["date"] = date_str
+        p["scraped_at"] = _date.today().isoformat()
+        p["body_ko"] = body_ko
+        p["title_zh"] = _translate(p["title_ko"], api_key)
+        time.sleep(_DELAY)
+        p["body_zh"] = _translate(body_ko, api_key)
+        time.sleep(_DELAY)
+        posts.append(p)
+        seen_ids.add(p["id"])
+        added += 1
+        print(f"    → {p['title_zh'][:50]}")
+        save_posts(posts)
+    except Exception as e:
+        print(f"    SKIP: {e}")
+    return added
 
-    session = requests.Session()
 
+def _scrape_paginated(board_path: str, label: str, posts: list, seen_ids: set,
+                      api_key: str, added: int) -> int:
+    """Scan all pages of a paginated board until empty or 404."""
+    print(f"\n--- {label} ({board_path}) ---")
     for page in range(1, 10000):
         print(f"Page {page}...", end=" ", flush=True)
         try:
-            board_posts = fetch_best_board_page(page, session)
-        except requests.exceptions.HTTPError as e:
-            if e.response is not None and e.response.status_code == 404:
-                print("404, end of board.")
-                break
-            print(f"ERROR: {e}, retrying in 10s...")
-            time.sleep(10)
-            continue
+            board_posts = fetch_paginated_board(board_path, page)
         except Exception as e:
             print(f"ERROR: {e}, retrying in 10s...")
             time.sleep(10)
             continue
 
         if not board_posts:
-            print("empty, done.")
+            print("done.")
             break
 
         qualifying = [p for p in board_posts if p["id"] not in seen_ids and p["likes"] >= _LIKES_THRESHOLD]
         print(f"{len(board_posts)} posts, {len(qualifying)} qualify")
 
         for p in qualifying:
-            print(f"  [{added + 1}] {p['title_ko'][:55]} (👍 {p['likes']})")
-            try:
-                body_ko, date_str = fetch_post_detail(p["url"], session)
-                p["date"] = date_str
-                p["scraped_at"] = _date.today().isoformat()
-                p["body_ko"] = body_ko
-                p["title_zh"] = _translate(p["title_ko"], api_key)
-                time.sleep(_DELAY)
-                p["body_zh"] = _translate(body_ko, api_key)
-                time.sleep(_DELAY)
-                posts.append(p)
-                seen_ids.add(p["id"])
-                added += 1
-                print(f"    → {p['title_zh'][:50]}")
-                save_posts(posts)
-            except Exception as e:
-                print(f"    SKIP: {e}")
+            added = _process_post(p, posts, seen_ids, api_key, added)
 
-    # --- Impact board (single page, all-time hall of fame) ---
-    print("\nFetching impact board (IF 명예의 전당)...")
+    return added
+
+
+def run(api_key: str) -> None:
+    posts = load_posts()
+    seen_ids = get_seen_ids(posts)
+    added = 0
+
+    # 1. Best board (paginated, already fully imported — fast pass)
+    added = _scrape_paginated("board/best/list", "Best board", posts, seen_ids, api_key, added)
+
+    # 2. All-boards list (paginated, covers free + other sub-boards back to founding)
+    added = _scrape_paginated("board/list", "All boards", posts, seen_ids, api_key, added)
+
+    # 3. Impact board (JS-rendered single page, all-time hall of fame)
+    print("\n--- Impact board (IF 명예의 전당, JS rendering) ---")
     try:
-        impact_posts = fetch_impact_board(session)
+        impact_posts = fetch_impact_board()
         qualifying = [p for p in impact_posts if p["id"] not in seen_ids and p["likes"] >= _LIKES_THRESHOLD]
-        print(f"{len(impact_posts)} posts found, {len(qualifying)} qualify (>= {_LIKES_THRESHOLD} likes)")
+        print(f"{len(impact_posts)} posts found, {len(qualifying)} qualify")
         for p in qualifying:
-            print(f"  [{added + 1}] {p['title_ko'][:55]} (👍 {p['likes']})")
-            try:
-                body_ko, date_str = fetch_post_detail(p["url"], session)
-                p["date"] = date_str
-                p["scraped_at"] = _date.today().isoformat()
-                p["body_ko"] = body_ko
-                p["title_zh"] = _translate(p["title_ko"], api_key)
-                time.sleep(_DELAY)
-                p["body_zh"] = _translate(body_ko, api_key)
-                time.sleep(_DELAY)
-                posts.append(p)
-                seen_ids.add(p["id"])
-                added += 1
-                print(f"    → {p['title_zh'][:50]}")
-                save_posts(posts)
-            except Exception as e:
-                print(f"    SKIP: {e}")
+            added = _process_post(p, posts, seen_ids, api_key, added)
     except Exception as e:
         print(f"Impact board ERROR: {e}")
 

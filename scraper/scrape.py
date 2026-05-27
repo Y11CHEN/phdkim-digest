@@ -3,7 +3,6 @@ import sys
 import time
 from datetime import date as _date
 from pathlib import Path
-import requests
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
@@ -23,10 +22,8 @@ def run(api_key: str) -> int:
     new_posts = []
     skipped_posts = []
 
-    session = requests.Session()
-
     print("Fetching best board...")
-    board_posts = fetch_best_board_page(1, session)
+    board_posts = fetch_best_board_page(1)
     print(f"Found {len(board_posts)} posts on best board.")
 
     for p in board_posts:
@@ -36,7 +33,7 @@ def run(api_key: str) -> int:
             continue
 
         print(f"  Processing: {p['title_ko'][:60]} (👍 {p['likes']})")
-        body_ko, date = fetch_post_detail(p["url"], session)
+        body_ko, date = fetch_post_detail(p["url"])
         p["date"] = date
         p["scraped_at"] = _date.today().isoformat()
         p["body_ko"] = body_ko
