@@ -96,10 +96,8 @@ def run(api_key: str) -> None:
     # 1. Best board (paginated, already fully imported — fast pass)
     added = _scrape_paginated("board/best/list", "Best board", posts, seen_ids, api_key, added)
 
-    # 2. All-boards list (paginated, covers free + other sub-boards back to founding)
-    added = _scrape_paginated("board/list", "All boards", posts, seen_ids, api_key, added)
-
-    # 3. Impact board (JS-rendered single page, all-time hall of fame)
+    # 2. Impact board (JS-rendered single page, all-time hall of fame)
+    # Run before /board/list so its IDs land in seen_ids first, preventing duplicates
     print("\n--- Impact board (IF 명예의 전당, JS rendering) ---")
     try:
         impact_posts = fetch_impact_board()
@@ -109,6 +107,10 @@ def run(api_key: str) -> None:
             added = _process_post(p, posts, seen_ids, api_key, added)
     except Exception as e:
         print(f"Impact board ERROR: {e}")
+
+    # 3. All-boards list (paginated, covers free + other sub-boards back to founding)
+    # Impact board IDs are already in seen_ids, so overlapping posts are skipped automatically
+    added = _scrape_paginated("board/list", "All boards", posts, seen_ids, api_key, added)
 
     write_html(posts, _HTML_PATH)
     print(f"\nDone. {added} new posts added. Total: {len(posts)}")
