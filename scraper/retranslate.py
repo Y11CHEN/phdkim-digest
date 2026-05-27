@@ -50,6 +50,13 @@ def run(api_key: str) -> None:
         print(f"Page {page}...", end=" ", flush=True)
         try:
             board_posts = fetch_best_board_page(page, session)
+        except requests.exceptions.HTTPError as e:
+            if e.response is not None and e.response.status_code == 404:
+                print("404, end of board.")
+                break
+            print(f"ERROR: {e}, retrying in 10s...")
+            time.sleep(10)
+            continue
         except Exception as e:
             print(f"ERROR: {e}, retrying in 10s...")
             time.sleep(10)
