@@ -17,7 +17,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from scraper.storage import load_posts, save_posts, get_seen_ids
 from scraper.translator import translate_text
-from scraper.fetcher import fetch_best_board_page, fetch_post_detail
+from scraper.fetcher import fetch_best_board_page, fetch_impact_board, fetch_post_detail
 from scraper.html_gen import write_html
 
 _HTML_PATH = Path(__file__).parent.parent / "docs" / "index.html"
@@ -87,6 +87,33 @@ def run(api_key: str) -> None:
                 save_posts(posts)
             except Exception as e:
                 print(f"    SKIP: {e}")
+
+    # --- Impact board (single page, all-time hall of fame) ---
+    print("\nFetching impact board (IF 명예의 전당)...")
+    try:
+        impact_posts = fetch_impact_board(session)
+        qualifying = [p for p in impact_posts if p["id"] not in seen_ids and p["likes"] >= _LIKES_THRESHOLD]
+        print(f"{len(impact_posts)} posts found, {len(qualifying)} qualify (>= {_LIKES_THRESHOLD} likes)")
+        for p in qualifying:
+            print(f"  [{added + 1}] {p['title_ko'][:55]} (👍 {p['likes']})")
+            try:
+                body_ko, date_str = fetch_post_detail(p["url"], session)
+                p["date"] = date_str
+                p["scraped_at"] = _date.today().isoformat()
+                p["body_ko"] = body_ko
+                p["title_zh"] = _translate(p["title_ko"], api_key)
+                time.sleep(_DELAY)
+                p["body_zh"] = _translate(body_ko, api_key)
+                time.sleep(_DELAY)
+                posts.append(p)
+                seen_ids.add(p["id"])
+                added += 1
+                print(f"    → {p['title_zh'][:50]}")
+                save_posts(posts)
+            except Exception as e:
+                print(f"    SKIP: {e}")
+    except Exception as e:
+        print(f"Impact board ERROR: {e}")
 
     write_html(posts, _HTML_PATH)
     print(f"\nDone. {added} new posts added. Total: {len(posts)}")

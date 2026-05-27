@@ -118,6 +118,42 @@ def fetch_best_board_page(page_num: int, session: requests.Session) -> list[dict
     return posts
 
 
+def fetch_impact_board(session: requests.Session) -> list[dict]:
+    """Returns all posts from /board/impact/list (single page, no pagination).
+
+    The impact board aggregates high-engagement posts from all sub-boards.
+    IDs are prefixed with the sub-board name (e.g. 'free_28190') to avoid
+    collision with best board IDs ('best_N').
+    """
+    soup = _get(session, f"{_BASE_URL}/board/impact/list")
+    posts = []
+    for row in soup.select("li.row"):
+        link = row.select_one("a.link")
+        if not link:
+            continue
+        href = link.get("href", "").split("?")[0]
+        parts = [p for p in href.split("/") if p]
+        if len(parts) < 3 or not parts[-1].isdigit():
+            continue
+        board_type = parts[-2]
+        post_url = f"{_BASE_URL}{href}"
+        post_id = f"{board_type}_{parts[-1]}"
+        title_ko = link.get_text(strip=True)
+        likes_el = row.select_one("p.react span.text")
+        try:
+            likes = int(likes_el.get_text(strip=True).replace(",", ""))
+        except (AttributeError, ValueError):
+            likes = 0
+        posts.append({
+            "id": post_id,
+            "url": post_url,
+            "title_ko": title_ko,
+            "likes": likes,
+            "date": "",
+        })
+    return posts
+
+
 def fetch_post_detail(url: str, session: requests.Session) -> tuple[str, str]:
     """Returns (body_text, date_str) for a post.  date_str is in 'YYYY.MM.DD' format
     or empty string if not found.
