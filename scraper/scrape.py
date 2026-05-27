@@ -21,6 +21,7 @@ def run(api_key: str) -> int:
     posts = load_posts()
     seen_ids = get_seen_ids(posts)
     new_posts = []
+    skipped_posts = []
 
     session = requests.Session()
 
@@ -48,10 +49,11 @@ def run(api_key: str) -> int:
                 break
             except Exception as e:
                 if attempt < 2:
-                    print(f"    Translation error ({e}), retrying in 15s...")
-                    time.sleep(15)
+                    print(f"    Translation error ({e}), retrying in 60s...")
+                    time.sleep(60)
                 else:
-                    print(f"    Translation failed after 3 attempts, skipping post.")
+                    skipped_posts.append(f"{p['title_ko'][:50]} (👍{p['likes']})")
+                    print(f"::warning::⚠️ Skipped: {p['title_ko'][:50]} (👍{p['likes']}) — will retry next sync")
         else:
             continue
         new_posts.append(p)
@@ -64,6 +66,11 @@ def run(api_key: str) -> int:
         print(f"Done: {len(new_posts)} new posts added. Total: {len(all_posts)}")
     else:
         print("No new posts found.")
+
+    if skipped_posts:
+        print(f"\n::warning::⚠️ {len(skipped_posts)} post(s) skipped due to API errors — will retry next sync:")
+        for title in skipped_posts:
+            print(f"::warning::  - {title}")
 
     return len(new_posts)
 
