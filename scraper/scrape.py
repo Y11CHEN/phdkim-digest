@@ -39,13 +39,20 @@ def run(api_key: str) -> int:
         p["date"] = date
         p["scraped_at"] = _date.today().isoformat()
         p["body_ko"] = body_ko
-        try:
-            p["title_zh"] = translate_text(p["title_ko"], api_key)
-            time.sleep(13)
-            p["body_zh"] = translate_text(body_ko, api_key)
-            time.sleep(13)
-        except Exception as e:
-            print(f"    Translation failed ({e}), skipping post.")
+        for attempt in range(3):
+            try:
+                p["title_zh"] = translate_text(p["title_ko"], api_key)
+                time.sleep(13)
+                p["body_zh"] = translate_text(body_ko, api_key)
+                time.sleep(13)
+                break
+            except Exception as e:
+                if attempt < 2:
+                    print(f"    Translation error ({e}), retrying in 15s...")
+                    time.sleep(15)
+                else:
+                    print(f"    Translation failed after 3 attempts, skipping post.")
+        else:
             continue
         new_posts.append(p)
         seen_ids.add(p["id"])
