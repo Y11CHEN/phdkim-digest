@@ -13,7 +13,7 @@ from scraper.fetcher import fetch_best_board_page, fetch_post_detail
 from scraper.html_gen import write_html
 
 _HTML_PATH = Path(__file__).parent.parent / "docs" / "index.html"
-_LIKES_THRESHOLD = 50
+_LIKES_THRESHOLD = 20
 
 
 def run(api_key: str) -> int:
